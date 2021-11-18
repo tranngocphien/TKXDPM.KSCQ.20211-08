@@ -15,7 +15,7 @@
          <children>
             <ImageView fitHeight="126.0" fitWidth="200.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../Pictures/PTvaXDPM/capstonelogo.png" />
+                  <Image url="@images/capstonelogo.png" />
                </image>
             </ImageView>
             <Label layoutX="509.0" layoutY="42.0" text="TRẢ XE" textAlignment="CENTER" textFill="#008094">

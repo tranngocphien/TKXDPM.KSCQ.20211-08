@@ -15,7 +15,7 @@
          <children>
             <ImageView fitHeight="150.0" fitWidth="200.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../Pictures/PTvaXDPM/capstonelogo.png" />
+                  <Image url="@images/capstonelogo.png" />
                </image>
             </ImageView>
             <Label layoutX="523.0" layoutY="22.0" text="TÌM KIẾM BÃI THUÊ XE" textAlignment="CENTER" textFill="#008094">
@@ -38,9 +38,9 @@
       </Pane>
       <Pane layoutX="71.0" layoutY="184.0" prefHeight="239.0" prefWidth="368.0" style="-fx-border-color: #999999; -fx-border-width: 0.25;">
          <children>
-            <ImageView fitHeight="239.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="185.0" fitWidth="156.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../Pictures/vải.jpg" />
+                  <Image url="@images/baixe1.jpg" />
                </image>
             </ImageView>
             <Label layoutX="245.0" layoutY="14.0" text="Bãi xe 1">
@@ -64,9 +64,9 @@
       </Pane>
       <Pane layoutX="71.0" layoutY="443.0" prefHeight="239.0" prefWidth="368.0" style="-fx-border-color: #999999; -fx-border-width: 0.25;">
          <children>
-            <ImageView fitHeight="239.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="133.0" fitWidth="156.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../Pictures/vải.jpg" />
+                  <Image url="@images/baixe1.jpg" />
                </image>
             </ImageView>
             <Label layoutX="245.0" layoutY="14.0" text="Bãi xe 4">
@@ -90,9 +90,9 @@
       </Pane>
       <Pane layoutX="499.0" layoutY="184.0" prefHeight="239.0" prefWidth="368.0" style="-fx-border-color: #999999; -fx-border-width: 0.25;">
          <children>
-            <ImageView fitHeight="239.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="133.0" fitWidth="156.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../Pictures/vải.jpg" />
+                  <Image url="@images/baixe1.jpg" />
                </image>
             </ImageView>
             <Label layoutX="245.0" layoutY="14.0" text="Bãi xe 2">
@@ -116,9 +116,9 @@
       </Pane>
       <Pane layoutX="933.0" layoutY="184.0" prefHeight="239.0" prefWidth="368.0" style="-fx-border-color: #999999; -fx-border-width: 0.25;">
          <children>
-            <ImageView fitHeight="239.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="113.0" fitWidth="156.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../Pictures/vải.jpg" />
+                  <Image url="@images/baixe1.jpg" />
                </image>
             </ImageView>
             <Label layoutX="245.0" layoutY="14.0" text="Bãi xe 3">
@@ -142,9 +142,9 @@
       </Pane>
       <Pane layoutX="499.0" layoutY="443.0" prefHeight="239.0" prefWidth="368.0" style="-fx-border-color: #999999; -fx-border-width: 0.25;">
          <children>
-            <ImageView fitHeight="239.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="133.0" fitWidth="156.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../Pictures/vải.jpg" />
+                  <Image url="@images/baixe1.jpg" />
                </image>
             </ImageView>
             <Label layoutX="245.0" layoutY="14.0" text="Bãi xe 5">
@@ -168,9 +168,9 @@
       </Pane>
       <Pane layoutX="933.0" layoutY="443.0" prefHeight="239.0" prefWidth="368.0" style="-fx-border-color: #999999; -fx-border-width: 0.25;">
          <children>
-            <ImageView fitHeight="239.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="133.0" fitWidth="156.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../Pictures/vải.jpg" />
+                  <Image url="@images/baixe1.jpg" />
                </image>
             </ImageView>
             <Label layoutX="245.0" layoutY="14.0" text="Bãi xe 6">
