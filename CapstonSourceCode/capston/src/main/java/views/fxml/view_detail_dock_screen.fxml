@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: #ffffff; -fx-border-style: ;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane prefHeight="127.0" prefWidth="1366.0" style="-fx-border-color: #e0e0e0;" AnchorPane.bottomAnchor="641.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fitHeight="111.0" fitWidth="200.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0">
+               <image>
+                  <Image url="@capstone.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="617.0" layoutY="37.0" text="BÃI XE 1" textFill="#008094">
+               <font>
+                  <Font name="System Bold" size="36.0" />
+               </font>
+            </Label>
+            <Button layoutX="1262.0" layoutY="51.0" mnemonicParsing="false" text="Trả xe">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="-9.0" layoutY="127.0" prefHeight="641.0" prefWidth="433.0" style="-fx-border-color: #e0e0e0;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-9.0" AnchorPane.rightAnchor="809.0" AnchorPane.topAnchor="127.0">
+         <children>
+            <VBox layoutX="78.0" layoutY="81.0" spacing="20.0">
+               <children>
+                  <Label text="Tên bãi xe" textFill="#008094">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Địa chỉ bãi xe" textFill="#008094">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Diện tích bãi xe" textFill="#008094">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Số xe đang có" textFill="#008094">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Vị trí trống xe đạp" textFill="#008094">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Vị trí trống xe đạp điện" textFill="#008094">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Khoảng cách ước tính" textFill="#008094">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Thời gian dự tính" textFill="#008094">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox layoutX="301.0" layoutY="81.0" spacing="20.0">
+               <children>
+                  <Label text="Bãi xe 1" textFill="#008094">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="1 Minh Khai" textFill="#008094">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="200m2" textFill="#008094">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="20" textFill="#008094">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="1, 4, 6, 8" textFill="#008094">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="2, 5, 8, 13" textFill="#008094">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="700m" textFill="#008094">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="12 phút" textFill="#008094">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <Pane layoutX="71.0" layoutY="489.0" prefHeight="120.0" prefWidth="460.0" style="-fx-border-color: #008094; -fx-border-radius: 20px;">
+               <children>
+                  <Label layoutX="26.0" layoutY="14.0" text="Mã xe" textFill="#008094">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField layoutX="26.0" layoutY="50.0" prefHeight="35.0" prefWidth="308.0" />
+                  <Button layoutX="362.0" layoutY="53.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" text="THUÊ XE" textFill="#008094">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+            </Pane>
+            <Label layoutX="236.0" layoutY="454.0" text="Thuê xe" textFill="#008094">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="189.0" layoutY="22.0" text="Thông tin bãi xe" textFill="#008094">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="566.0" layoutY="126.0" prefHeight="641.0" prefWidth="433.0" style="-fx-border-color: #008094; -fx-background-color: #008094;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="566.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <VBox layoutX="18.0" layoutY="82.0" prefHeight="539.0" prefWidth="366.0" spacing="20.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 15px;">
+               <children>
+                  <Pane prefHeight="155.0" prefWidth="365.0" style="-fx-border-color: #000000; -fx-border-radius: 15px; -fx-background-radius: 15px;">
+                     <children>
+                        <ImageView fitHeight="95.0" fitWidth="122.0" layoutX="10.0" layoutY="12.0">
+                           <image>
+                              <Image url="@xe%20đạp.jfif" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="132.0" layoutY="28.0" text="Xe đạp 1">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="135.0" layoutY="93.0" text="Vị trí: 2">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Button layoutX="272.0" layoutY="86.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="79.0" text="Xem chi tiết" />
+                     </children>
+                  </Pane>
+                  <Pane layoutX="11.0" layoutY="11.0" prefHeight="155.0" prefWidth="365.0" style="-fx-border-color: #000000; -fx-border-radius: 15px;">
+                     <children>
+                        <ImageView fitHeight="95.0" fitWidth="122.0" layoutX="10.0" layoutY="12.0">
+                           <image>
+                              <Image url="@xe%20đạp.jfif" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="132.0" layoutY="28.0" text="Xe đạp 1">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="135.0" layoutY="93.0" text="Vị trí: 2">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Button layoutX="272.0" layoutY="86.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="79.0" text="Xem chi tiết" />
+                     </children>
+                  </Pane>
+                  <Pane layoutX="11.0" layoutY="186.0" prefHeight="155.0" prefWidth="365.0" style="-fx-border-color: #000000; -fx-border-radius: 15px;">
+                     <children>
+                        <ImageView fitHeight="95.0" fitWidth="122.0" layoutX="10.0" layoutY="12.0">
+                           <image>
+                              <Image url="@xe%20đạp.jfif" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="132.0" layoutY="28.0" text="Xe đạp 1">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="135.0" layoutY="93.0" text="Vị trí: 2">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Button layoutX="272.0" layoutY="86.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="79.0" text="Xem chi tiết" />
+                     </children>
+                  </Pane>
+               </children>
+            </VBox>
+            <Label layoutX="162.0" layoutY="34.0" text="Xe đạp" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <VBox layoutX="419.0" layoutY="82.0" prefHeight="539.0" prefWidth="366.0" spacing="20.0" style="-fx-border-color: #E0E0E0; -fx-background-color: #FFFFFF;">
+               <children>
+                  <Pane prefHeight="155.0" prefWidth="365.0" style="-fx-border-color: #000000; -fx-background-radius: 15px;">
+                     <children>
+                        <ImageView fitHeight="120.0" fitWidth="122.0" layoutX="4.0" layoutY="13.0">
+                           <image>
+                              <Image url="@xe%20đạp.jfif" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="132.0" layoutY="28.0" text="Xe đạp điện 1">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="135.0" layoutY="93.0" text="Vị trí: 2">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Button layoutX="272.0" layoutY="86.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="79.0" text="Xem chi tiết" />
+                     </children>
+                  </Pane>
+                  <Pane layoutX="11.0" layoutY="11.0" prefHeight="155.0" prefWidth="365.0" style="-fx-border-color: #000000; -fx-background-radius: 15px;">
+                     <children>
+                        <ImageView fitHeight="120.0" fitWidth="122.0" layoutX="4.0" layoutY="13.0">
+                           <image>
+                              <Image url="@xe%20đạp.jfif" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="132.0" layoutY="28.0" text="Xe đạp điện 1">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="135.0" layoutY="93.0" text="Vị trí: 2">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Button layoutX="272.0" layoutY="86.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="79.0" text="Xem chi tiết" />
+                     </children>
+                  </Pane>
+                  <Pane layoutX="11.0" layoutY="166.0" prefHeight="155.0" prefWidth="365.0" style="-fx-border-color: #000000; -fx-background-radius: 15px;">
+                     <children>
+                        <ImageView fitHeight="120.0" fitWidth="122.0" layoutX="4.0" layoutY="13.0">
+                           <image>
+                              <Image url="@xe%20đạp.jfif" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="132.0" layoutY="28.0" text="Xe đạp điện 1">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="135.0" layoutY="93.0" text="Vị trí: 2">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Button layoutX="272.0" layoutY="86.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="79.0" text="Xem chi tiết" />
+                     </children>
+                  </Pane>
+               </children>
+            </VBox>
+            <Label layoutX="563.0" layoutY="34.0" text="Xe đạp điện" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
