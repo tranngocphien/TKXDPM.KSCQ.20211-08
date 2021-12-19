@@ -7,12 +7,14 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import utils.Configs;
 import views.screen.BaseScreenHandler;
 
+import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -51,6 +53,10 @@ public class HomeScreenHandler extends BaseScreenHandler{
             throwables.printStackTrace();
         }
         addDockComponent(this.homeItems);
+
+        buttonDock.setOnMouseClicked(e -> {
+            searchDockByString();
+        });
     }
 
 
@@ -68,5 +74,23 @@ public class HomeScreenHandler extends BaseScreenHandler{
         }
         return;
 
+    }
+
+    public void searchDockByString() {
+        List items = new ArrayList();
+        try {
+            System.out.println("search");
+            String search = searchDockTextField.getText();
+            System.out.println(search);
+            List<Dock> docks = getBController().searchDockByString(search);
+            for (Dock dock : docks) {
+                DockHandler dockHandler = new DockHandler(this.stage,Configs.DOCK_COMPONENT_PATH, dock);
+                dockHandler.setPreviousScreen(this);
+                items.add(dockHandler);
+            }
+            addDockComponent(items);
+        } catch (SQLException | IOException exp) {
+            exp.printStackTrace();
+        }
     }
 }
