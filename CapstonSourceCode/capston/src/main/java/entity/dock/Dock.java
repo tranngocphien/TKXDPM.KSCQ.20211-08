@@ -2,6 +2,7 @@ package entity.dock;
 
 import entity.bicycle.Bicycle;
 import entity.bicycle.CoupleBike;
+import entity.bicycle.ElectricBicycle;
 import entity.bicycle.Vehicle;
 import entity.db.CAPSTONDB;
 
@@ -115,7 +116,7 @@ public class Dock {
 
     public List<Dock> searchDockByString(String search) throws SQLException {
         Statement stm = CAPSTONDB.getConnection().createStatement();
-        String sql = "SELECT * FROM dock where LOCATE('"+search+"', CONCAT_WS(', ', address, name)";
+        String sql = "SELECT * FROM dock where LOCATE('"+search+"', CONCAT_WS(', ', address, name))";
         ResultSet res = stm.executeQuery(sql);
         List<Dock> list = new ArrayList<>();
         while (res.next()) {
@@ -144,7 +145,7 @@ public class Dock {
 
             dock.setListBicycle(new Bicycle().listBikeByDockId(dock.getId()));
             dock.setListCoupleBike(new CoupleBike().listBikeByDockId(dock.getId()));
-            dock.setListElectricBike(new CoupleBike().listBikeByDockId(dock.getId()));
+            dock.setListElectricBike(new ElectricBicycle().listBikeByDockId(dock.getId()));
 
             return dock;
         }
