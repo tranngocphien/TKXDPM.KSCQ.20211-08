@@ -1,3 +1,4 @@
+import entity.bicycle.Vehicle;
 import javafx.animation.FadeTransition;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -8,6 +9,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import utils.Configs;
 import views.screen.home.HomeScreenHandler;
+import views.screen.return_bicycle.ReturnBicycleScreenHandler;
 
 import java.io.IOException;
 
@@ -45,6 +47,9 @@ public class App extends Application {
                     HomeScreenHandler homeHandler = new HomeScreenHandler(stage, Configs.HOME_PATH);
                     homeHandler.setScreenTitle("Home Screen");
                     homeHandler.show();
+//                    ReturnBicycleScreenHandler returnBicycleScreenHandler = new ReturnBicycleScreenHandler(stage, Configs.RETURN_BIKE_PATH, new Vehicle());
+//                    returnBicycleScreenHandler.setScreenTitle("Return Bike");
+//                    returnBicycleScreenHandler.show();
                 } catch (IOException e1) {
                     e1.printStackTrace();
                 }
