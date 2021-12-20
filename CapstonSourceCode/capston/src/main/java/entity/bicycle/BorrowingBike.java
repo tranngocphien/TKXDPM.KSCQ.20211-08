@@ -1,6 +1,13 @@
 package entity.bicycle;
 
+import entity.db.CAPSTONDB;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Timestamp;
+import java.util.HashMap;
+import java.util.Map;
 
 public class BorrowingBike {
     private Long id;
@@ -69,5 +76,71 @@ public class BorrowingBike {
 
     public void setBorrowedAt(Timestamp borrowedAt) {
         this.borrowedAt = borrowedAt;
+    }
+
+    public BorrowingBike getBorrowingBikeByBikeId(Long bikeId) {
+        try {
+            Statement stm = CAPSTONDB.getConnection().createStatement();
+            String sql = "SELECT * FROM borrowing_bikes WHERE bike_id = "+bikeId;
+            ResultSet res = stm.executeQuery(sql);
+            if (res.next()) {
+                BorrowingBike borrowingBike = new BorrowingBike();
+                borrowingBike.setId(res.getLong("id"));
+                borrowingBike.setUserId(res.getLong("user_id"));
+                borrowingBike.setBikeId(res.getLong("bike_id"));
+                borrowingBike.setTotalTime(res.getTimestamp("total_time"));
+                borrowingBike.setBorrowedAt(res.getTimestamp("borrowed_at"));
+                borrowingBike.setBorrowedAtDockId(res.getLong("borrowed_at_dock_id"));
+                return borrowingBike;
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
+
+    public void returnBorrowingBikeByBikeId(Long bikeId, Long dockId) {
+        try {
+            //Đoạn này vẫn lỗi
+            String sql1 = "SELECT * FROM borrowing_bikes where bike_id = "+bikeId;
+            Statement stm = CAPSTONDB.getConnection().createStatement();
+            ResultSet res = stm.executeQuery(sql1);
+            Map<String, Object> borrowing = new HashMap<>();
+            if (res.next()) {
+                borrowing.put("", res.getLong("id"));
+            }
+
+            String sql = "DELETE FROM borrowing_bikes WHERE bike_id = "+bikeId;
+            stm.executeUpdate(sql);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    public void addBorrowingBike(Long userId, Long bikeId) {
+        try {
+
+            String query = "SELECT * FROM bikes as b left join dock_bike as db on b.id = db.bike_id WHERE b.id = "+bikeId;
+            Statement stm1 = CAPSTONDB.getConnection().createStatement();
+            ResultSet res = stm1.executeQuery(query);
+            Map<String, Object> objectMap = new HashMap<>();
+            if (res.next()) {
+                objectMap.put("bikeId", res.getLong("bike_id"));
+                objectMap.put("dockId", res.getLong("dock_id"));
+                objectMap.put("locationAtDock", res.getLong("location_at_dock"));
+                objectMap.put("dockBikeId", res.getLong("db.id"));
+            }
+
+            String sql1 = "UPDATE dock_bike SET bike_id = 0 WHERE id = "+Long.parseLong(objectMap.get("dockBikeId").toString());
+            Statement stm2 = CAPSTONDB.getConnection().createStatement();
+            stm2.executeUpdate(sql1);
+
+            Statement stm = CAPSTONDB.getConnection().createStatement();
+            String sql = "INSERT INTO borrowing_bikes (`user_id`,`bike_id`,`borrowed_at`,`borrowed_at_dock_id`) VALUES ("+userId+","+bikeId+","+new Timestamp(System.currentTimeMillis())+","+Long.parseLong(objectMap.get("dockId").toString())+")";
+            stm.executeUpdate(sql);
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 }
