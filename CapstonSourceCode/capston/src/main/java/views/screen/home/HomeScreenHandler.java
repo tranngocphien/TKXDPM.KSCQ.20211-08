@@ -79,9 +79,8 @@ public class HomeScreenHandler extends BaseScreenHandler{
     public void searchDockByString() {
         List items = new ArrayList();
         try {
-            System.out.println("search");
+
             String search = searchDockTextField.getText();
-            System.out.println(search);
             List<Dock> docks = getBController().searchDockByString(search);
             for (Dock dock : docks) {
                 DockHandler dockHandler = new DockHandler(this.stage,Configs.DOCK_COMPONENT_PATH, dock);

@@ -78,4 +78,20 @@ public class DockBike {
         }
         return dockBikeList;
     }
+
+    public List getDockBikeByDockIdAndEmpty(Long dockId) throws SQLException {
+        String sql = "SELECT * FROM dock_bike db where db.bike_id = 0 and db.where dock_id = "+dockId;
+        Statement stm = CAPSTONDB.getConnection().createStatement();
+        ResultSet res = stm.executeQuery(sql);
+        List<DockBike> dockBikeList = new ArrayList<>();
+        if(res.next()) {
+            DockBike dockBike = new DockBike();
+            dockBike.setId(res.getLong("id"));
+            dockBike.setBikeId(res.getLong("bike_id"));
+            dockBike.setDockId(res.getLong("dock_id"));
+            dockBike.setLocationAtDock(res.getLong("location_at_dock"));
+            dockBikeList.add(dockBike);
+        }
+        return dockBikeList;
+    }
 }
