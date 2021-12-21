@@ -7,5 +7,8 @@ public class Configs {
     public static final String DOCK_DETAIL_PATH = "/fxml/view_detail_dock_screen.fxml";
     public static final String VEHICLE_COMPONENT_PATH = "/fxml/vehicle_component.fxml";
 
+    public static final String PROCESS_TRANSACTION_URL = "https://ecopark-system-api.herokuapp.com/api/card/processTransaction";
+
+
 
 }
