@@ -46,7 +46,7 @@ public class HomeScreenHandler extends BaseScreenHandler{
             this.homeItems = new ArrayList();
             for (Dock dock : docks) {
                 DockHandler dockHandler = new DockHandler(this.stage,Configs.DOCK_COMPONENT_PATH, dock);
-                dockHandler.setPreviousScreen(this);
+                dockHandler.setHomeScreenHandler(this);
                 this.homeItems.add(dockHandler);
             }
         } catch (SQLException | IOException throwables) {
