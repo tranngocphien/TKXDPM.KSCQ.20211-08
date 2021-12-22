@@ -11,9 +11,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import utils.Configs;
 import views.screen.BaseScreenHandler;
+import views.screen.dock.ViewDockScreenHandler;
+import views.screen.popup.PopupScreenHandler;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -54,8 +58,34 @@ public class ReturnBicycleScreenHandler extends BaseScreenHandler {
     }
 
     public void returnBike() {
-        String str = cbbListDock.getValue().toString();
-        System.out.println(str.substring(7));
-        System.out.println("Mã xe trả: "+ bikeCode.getText());
+        try {
+            String str = cbbListDock.getValue().toString();
+            Long dockId = Long.parseLong(str.substring(7));
+            System.out.println(str.substring(7));
+            System.out.println("Mã xe trả: "+ bikeCode.getText());
+        } catch (Exception e) {
+
+//            try {
+//                PopupScreenHandler popupScreenHandler = new PopupScreenHandler(this.stage, Configs.POPUP_PATH, "KẾT QUẢ TRẢ XE", "TRẢ XE THÀNH CÔNG");
+//                popupScreenHandler.setScreenTitle("Trả xe thành thông");
+//                popupScreenHandler.setPreviousScreen(this.homeScreenHandler);
+//                popupScreenHandler.show();
+//            } catch (IOException io) {
+//                io.printStackTrace();
+//            }
+            e.printStackTrace();
+        }
+
+        //getBController().returnBike(1l,dockId);
+
+        PopupScreenHandler popupScreenHandler = null;
+        try {
+            popupScreenHandler = new PopupScreenHandler(this.stage, Configs.POPUP_PATH, "KẾT QUẢ TRẢ XE", "TRẢ XE THÀNH CÔNG");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        popupScreenHandler.setScreenTitle("Trả xe thành thông");
+        popupScreenHandler.setPreviousScreen(this.homeScreenHandler);
+        popupScreenHandler.show();
     }
 }
