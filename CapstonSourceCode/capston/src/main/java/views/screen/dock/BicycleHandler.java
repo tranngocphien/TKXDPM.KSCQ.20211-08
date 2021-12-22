@@ -5,7 +5,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import utils.Configs;
 import views.screen.BaseScreenHandler;
+import views.screen.rent_bicycle.RentBicycleScreenHandler;
 
 import java.io.IOException;
 
@@ -36,6 +38,14 @@ public class BicycleHandler extends BaseScreenHandler {
         lbLocation.setText(vehicle.getLocationAtDock().toString());
 
         btnDetail.setOnMouseClicked(e -> {
+            RentBicycleScreenHandler rentBicycleScreenHandler = null;
+            try {
+                rentBicycleScreenHandler = new RentBicycleScreenHandler(stage, Configs.RENT_BIKE_PATH, vehicle);
+                rentBicycleScreenHandler.setScreenTitle("Bicycle");
+                rentBicycleScreenHandler.show();
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
 
         });
     }

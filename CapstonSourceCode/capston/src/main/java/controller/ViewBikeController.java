@@ -1,4 +1,4 @@
 package controller;
 
-public class ViewBikeController {
+public class ViewBikeController extends BaseController{
 }
