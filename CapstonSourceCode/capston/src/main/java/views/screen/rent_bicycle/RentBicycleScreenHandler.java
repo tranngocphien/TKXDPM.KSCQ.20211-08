@@ -1,11 +1,17 @@
 package views.screen.rent_bicycle;
 
+import entity.bicycle.Bicycle;
+import entity.bicycle.CoupleBike;
+import entity.bicycle.ElectricBicycle;
+import entity.bicycle.Vehicle;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import utils.Configs;
 import views.screen.BaseScreenHandler;
+import views.screen.payment.PaymentScreenHandler;
 
 import java.io.IOException;
 
@@ -22,8 +28,38 @@ public class RentBicycleScreenHandler extends BaseScreenHandler {
     @FXML
     private Label tbDeposit;
 
-    public RentBicycleScreenHandler(Stage stage, String screenPath, String id) throws IOException {
+    @FXML
+    private Button btnRentBicycle;
+
+    public RentBicycleScreenHandler(Stage stage, String screenPath, Vehicle vehicle) throws IOException {
         super(stage, screenPath);
+
+        lbBicycleCode.setText(vehicle.getBikeCode());
+        if(vehicle instanceof Bicycle){
+            lbType.setText("Xe đạp thường");
+            lbBaterry.setVisible(false);
+        }
+        else if (vehicle instanceof CoupleBike){
+            lbType.setText("Xe đạp đôi");
+            lbBaterry.setVisible(false);
+        }
+        else {
+            lbType.setText("Xe đạp điện");
+            lbBaterry.setText(((ElectricBicycle) vehicle).getPin().toString() );
+        }
+
+
+
+        btnRentBicycle.setOnMouseClicked(e -> {
+            PaymentScreenHandler paymentScreenHandler = null;
+            try {
+                paymentScreenHandler = new PaymentScreenHandler(stage, Configs.PAYMENT_PATH);
+                paymentScreenHandler.setScreenTitle("Bicycle");
+                paymentScreenHandler.show();
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+        });
     }
 
 }

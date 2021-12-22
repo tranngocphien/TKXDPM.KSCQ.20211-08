@@ -98,11 +98,11 @@ public class ViewDockScreenHandler extends BaseScreenHandler {
         }
 
         btnRent.setOnMouseClicked(e -> {
-            RentBicycleScreenHandler homeHandler = null;
+            RentBicycleScreenHandler rentBicycleScreenHandler = null;
             try {
-                homeHandler = new RentBicycleScreenHandler(stage, Configs.RENT_BIKE_PATH, tfBicycleCode.getText());
-                homeHandler.setScreenTitle("Home Screen");
-                homeHandler.show();
+                rentBicycleScreenHandler = new RentBicycleScreenHandler(stage, Configs.RENT_BIKE_PATH, null);
+                rentBicycleScreenHandler.setScreenTitle("Bicycle");
+                rentBicycleScreenHandler.show();
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }
