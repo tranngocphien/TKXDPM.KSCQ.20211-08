@@ -11,6 +11,8 @@ public class Configs {
     public static final String RENT_BIKE_PATH = "/fxml/rent_bicycle.fxml";
     public static final String RETURN_BIKE_PATH =  "/fxml/return_bike.fxml";
     public static final String POPUP_PATH = "/fxml/SuccessScreen.fxml";
+    public static final String BORROWING_BIKE_PATH = "/fxml/XemXeDangThue.fxml";
+
 
     public static final String PROCESS_TRANSACTION_URL = "https://ecopark-system-api.herokuapp.com/api/card/processTransaction";
 
