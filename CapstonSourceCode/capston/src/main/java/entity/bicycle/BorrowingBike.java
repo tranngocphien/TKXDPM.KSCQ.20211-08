@@ -142,7 +142,7 @@ public class BorrowingBike {
     public void addBorrowingBike(Long userId, Long bikeId) {
         try {
 
-            String query = "SELECT * FROM bikes as b left join dock_bike as db on b.id = db.bike_id WHERE b.id = "+bikeId;
+            String query = "SELECT * FROM bike as b left join dock_bike as db on b.id = db.bike_id WHERE b.id = "+bikeId;
             Statement stm1 = CAPSTONDB.getConnection().createStatement();
             ResultSet res = stm1.executeQuery(query);
             Map<String, Object> objectMap = new HashMap<>();
@@ -156,7 +156,7 @@ public class BorrowingBike {
 
             Statement stm = CAPSTONDB.getConnection().createStatement();
             String sql = "INSERT INTO borrowing_bikes (`user_id`,`bike_id`,`borrowed_at`,`borrowed_at_dock_id`, `classify_id`) " +
-                    "VALUES ("+userId+","+bikeId+","+new Timestamp(System.currentTimeMillis())+","+ (Long) objectMap.get("dockId")+","+ (int) objectMap.get("classifyId")+")";
+                    "VALUES ("+userId+","+bikeId+",'"+new Timestamp(System.currentTimeMillis())+"',"+ (Long) objectMap.get("dockId")+","+ (int) objectMap.get("classifyId")+")";
             stm.executeUpdate(sql);
 
         } catch (SQLException throwables) {

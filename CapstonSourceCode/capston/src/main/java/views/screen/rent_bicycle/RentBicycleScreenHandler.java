@@ -53,7 +53,7 @@ public class RentBicycleScreenHandler extends BaseScreenHandler {
         btnRentBicycle.setOnMouseClicked(e -> {
             PaymentScreenHandler paymentScreenHandler = null;
             try {
-                paymentScreenHandler = new PaymentScreenHandler(stage, Configs.PAYMENT_PATH);
+                paymentScreenHandler = new PaymentScreenHandler(stage, Configs.PAYMENT_PATH, vehicle);
                 paymentScreenHandler.setScreenTitle("Bicycle");
                 paymentScreenHandler.show();
             } catch (IOException ioException) {
