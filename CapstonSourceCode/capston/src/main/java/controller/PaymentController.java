@@ -12,6 +12,11 @@ import java.util.Calendar;
 import java.util.Hashtable;
 import java.util.Map;
 
+/**
+ * This class control the flow of the payment process
+ *
+ * @author PhienTran
+ */
 public class PaymentController extends BaseController{
 
     private CreditCard card;

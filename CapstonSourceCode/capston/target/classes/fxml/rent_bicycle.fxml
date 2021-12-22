@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="590.0" prefWidth="1120.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane prefHeight="120.0" prefWidth="1117.0" style="-fx-border-color: #777777; -fx-border-width: 0.25;">
+         <children>
+            <ImageView fitHeight="126.0" fitWidth="200.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/capstonelogo.png" />
+               </image>
+            </ImageView>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="472.0" layoutY="33.0" text="THÔNG TIN XE " textAlignment="CENTER" textFill="#008094">
+               <font>
+                  <Font name="Consolas Bold Italic" size="30.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Button layoutX="451.0" layoutY="527.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="254.0" style="-fx-background-color: red;" text="Thuê xe" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+      <Pane layoutX="579.0" layoutY="120.0" prefHeight="376.0" prefWidth="538.0" style="-fx-border-color: #777777; -fx-border-width: 0.25;">
+         <children>
+            <Label layoutX="50.0" layoutY="15.0" text="Mã xe:">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="50.0" layoutY="60.0" text="Loại xe:">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="50.0" layoutY="150.0" text="Tiền cọc:">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="50.0" layoutY="195.0" text="Lưu ý:">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="lbBicycleCode" layoutX="240.0" layoutY="15.0" text="XDT0001">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="lbType" layoutX="240.0" layoutY="60.0" text="Xe đạp thường">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="tbDeposit" layoutX="240.0" layoutY="150.0" text="400.000">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="55.0" layoutY="220.0" prefHeight="60.0" prefWidth="450.0" text="Khách hàng sẽ được miễn phí thuê xe nếu trả xe trong vòng 10 phút. Sau 10 phút, phí thuê xe được tính như sau:" wrapText="true">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="50.0" layoutY="105.0" text="Tình trạng xe:">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="lbBaterry" layoutX="241.0" layoutY="105.0" text="Lượng pin còn lại: 30%">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="55.0" layoutY="265.0" prefHeight="113.0" prefWidth="460.0" text="Giá khởi điểm cho 30 phút đầu là 10.000 đồng. Cứ mỗi 15 phút tiếp theo, khách sẽ phải trả thêm 3.000 đồng. Với xe đạp đơn điện và xe đạp đôi thường,khách cần trả đắt hơn cách tính giá phía trên 1,5 lần." textAlignment="JUSTIFY" wrapText="true">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <ImageView fitHeight="307.0" fitWidth="423.0" layoutX="90.0" layoutY="151.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/xedap.jpg" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
