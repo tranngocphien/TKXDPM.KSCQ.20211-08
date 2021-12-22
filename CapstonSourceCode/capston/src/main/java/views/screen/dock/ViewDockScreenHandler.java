@@ -8,12 +8,15 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import utils.Configs;
 import views.screen.BaseScreenHandler;
+import views.screen.home.HomeScreenHandler;
+import views.screen.rent_bicycle.RentBicycleScreenHandler;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -48,6 +51,12 @@ public class ViewDockScreenHandler extends BaseScreenHandler {
 
     @FXML
     private VBox vbElectric;
+
+    @FXML
+    private TextField tfBicycleCode;
+
+    @FXML
+    private Button btnRent;
 
     private Dock dock;
 
@@ -88,11 +97,18 @@ public class ViewDockScreenHandler extends BaseScreenHandler {
             vbElectric.getChildren().add(bicycleHandler.getContent());
         }
 
+        btnRent.setOnMouseClicked(e -> {
+            RentBicycleScreenHandler homeHandler = null;
+            try {
+                homeHandler = new RentBicycleScreenHandler(stage, Configs.RENT_BIKE_PATH, tfBicycleCode.getText());
+                homeHandler.setScreenTitle("Home Screen");
+                homeHandler.show();
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
 
 
-
-
-
+        });
 
 
     }

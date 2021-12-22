@@ -9,14 +9,36 @@ import utils.Utils;
 
 import java.util.Map;
 
+/**
+ * Class điều khiển luồng hoạt động cảu InterbankSubsystem.
+ *
+ * @author PhienTran
+ */
 public class InterbankSubsystemController {
     private static final String PUBLIC_KEY = "AQzdE8O/fR8=";
     private static final String SECRET_KEY = "BUXj/7/gHHI=";
+    /**
+     * command trong trường hợp thanh toán giao dịch
+     */
     private static final String PAY_COMMAND = "pay";
+    /**
+     * command trong trường hợp hoàn tiền
+     */
     private static final String REFUND_COMMAND = "refund";
+    /**
+     * version API 1.0.1: Capston
+     */
     private static final String VERSION = "1.0.1";
 
     private static InterbankBoundary interbankBoundary = new InterbankBoundary();
+
+    /**
+     * Thực hiện thanh toán tiền đặt cọc và trả về thông tin giao dịch
+     * @param card - Thông tin thẻ sử dụng
+     * @param amount - Số tiền thanh toán
+     * @param contents - Nội dung giao dịch
+     * @return PaymentTransaction: Thông tin giao dịch thanh toán
+     */
 
     public PaymentTransaction payDeposit(CreditCard card, int amount, String contents){
         Map<String, Object> transaction = new MyMap();
@@ -47,6 +69,14 @@ public class InterbankSubsystemController {
         return makePaymentTransaction(response);
     }
 
+    /**
+     * Thực hiện hoàn lại tiền đặt cọc và trả về thông tin giao dịch
+     * @param card - Thông tin thẻ được hoàn lại tiền
+     * @param amount - Số tiền hoàn lại
+     * @param content - Nội dung giao dịch
+     * @return PaymentTransaction Thông tin giao dịch
+     */
+
     public PaymentTransaction refundDeposit(CreditCard card, int amount, String content){
         Map<String, Object> transaction = new MyMap();
         try {
@@ -75,9 +105,20 @@ public class InterbankSubsystemController {
 
         return makePaymentTransaction(response);    }
 
+    /**
+     * Chuyển đổi từ MyMap sang dạng Json
+     * @param data
+     * @return
+     */
     private String generateData(Map<String, Object> data) {
         return ((MyMap) data).toJSON();
     }
+
+    /**
+     * Thực hiện chuyển response khi gọi API trong bước thanh toán và hoàn tiền về PaymentTransaction
+     * @param response
+     * @return
+     */
 
     private PaymentTransaction makePaymentTransaction(MyMap response) {
         if (response == null)

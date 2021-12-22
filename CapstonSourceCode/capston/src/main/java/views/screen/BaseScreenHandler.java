@@ -10,6 +10,11 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import views.screen.home.HomeScreenHandler;
 
+/**
+ * Class base screen handler của Capston project
+ *
+ * @author PhienTran
+ */
 public class BaseScreenHandler extends FXMLScreenHandler {
 
     private Scene scene;

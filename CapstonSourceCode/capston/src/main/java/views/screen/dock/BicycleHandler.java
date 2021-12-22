@@ -34,5 +34,10 @@ public class BicycleHandler extends BaseScreenHandler {
         lbName.setText(vehicle.getName());
         lbBicycleCode.setText(vehicle.getBikeCode());
         lbLocation.setText(vehicle.getLocationAtDock().toString());
+
+        btnDetail.setOnMouseClicked(e -> {
+
+        });
     }
 }
+

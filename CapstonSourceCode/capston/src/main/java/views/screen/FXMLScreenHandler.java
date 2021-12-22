@@ -8,6 +8,11 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
+/**
+ * Class load file fxml
+ *
+ * @author PhienTran
+ */
 public class FXMLScreenHandler {
 
     protected FXMLLoader loader;
