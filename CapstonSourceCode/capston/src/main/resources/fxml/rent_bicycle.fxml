@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="590.0" prefWidth="1120.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/15" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Pane prefHeight="120.0" prefWidth="1117.0" style="-fx-border-color: #777777; -fx-border-width: 0.25;">
+      <Pane prefHeight="120.0" prefWidth="1366.0" style="-fx-border-color: #777777; -fx-border-width: 0.25;">
          <children>
             <ImageView fitHeight="126.0" fitWidth="200.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -24,12 +24,12 @@
             </Label>
          </children>
       </Pane>
-      <Button layoutX="451.0" layoutY="527.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="254.0" style="-fx-background-color: red;" text="Thuê xe" textFill="WHITE">
+      <Button fx:id="btnRentBicycle" layoutX="451.0" layoutY="527.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="254.0" style="-fx-background-color: red;" text="Thuê xe" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
       </Button>
-      <Pane layoutX="579.0" layoutY="120.0" prefHeight="376.0" prefWidth="538.0" style="-fx-border-color: #777777; -fx-border-width: 0.25;">
+      <Pane layoutX="579.0" layoutY="120.0" prefHeight="376.0" prefWidth="788.0" style="-fx-border-color: #777777; -fx-border-width: 0.25;">
          <children>
             <Label layoutX="50.0" layoutY="15.0" text="Mã xe:">
                <font>
@@ -66,7 +66,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="55.0" layoutY="220.0" prefHeight="60.0" prefWidth="450.0" text="Khách hàng sẽ được miễn phí thuê xe nếu trả xe trong vòng 10 phút. Sau 10 phút, phí thuê xe được tính như sau:" wrapText="true">
+            <Label layoutX="55.0" layoutY="220.0" prefHeight="60.0" prefWidth="690.0" text="Khách hàng sẽ được miễn phí thuê xe nếu trả xe trong vòng 10 phút. Sau 10 phút, phí thuê xe được tính như sau:" wrapText="true">
                <font>
                   <Font size="16.0" />
                </font>
@@ -81,7 +81,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label layoutX="55.0" layoutY="265.0" prefHeight="113.0" prefWidth="460.0" text="Giá khởi điểm cho 30 phút đầu là 10.000 đồng. Cứ mỗi 15 phút tiếp theo, khách sẽ phải trả thêm 3.000 đồng. Với xe đạp đơn điện và xe đạp đôi thường,khách cần trả đắt hơn cách tính giá phía trên 1,5 lần." textAlignment="JUSTIFY" wrapText="true">
+            <Label layoutX="55.0" layoutY="265.0" prefHeight="113.0" prefWidth="690.0" text="Giá khởi điểm cho 30 phút đầu là 10.000 đồng. Cứ mỗi 15 phút tiếp theo, khách sẽ phải trả thêm 3.000 đồng. Với xe đạp đơn điện và xe đạp đôi thường,khách cần trả đắt hơn cách tính giá phía trên 1,5 lần." textAlignment="JUSTIFY" wrapText="true">
                <font>
                   <Font size="16.0" />
                </font>
