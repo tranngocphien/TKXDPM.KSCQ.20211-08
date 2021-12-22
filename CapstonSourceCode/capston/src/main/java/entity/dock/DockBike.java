@@ -94,4 +94,24 @@ public class DockBike {
         }
         return dockBikeList;
     }
+
+    public void removeBikeOnDock(Long bikeId) {
+        String sql1 = "UPDATE dock_bike SET bike_id = 0 WHERE bike_id = "+bikeId;
+        try {
+            Statement stm2 = CAPSTONDB.getConnection().createStatement();
+            stm2.executeUpdate(sql1);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    public void addBikeOnDock(Long bikeId, Integer classifyId, Long dockId) {
+        String sql = "UPDATE dock_bike SET bike_id = "+bikeId+" WHERE dock_id = "+dockId+" and bike_id = 0 and classify_id = "+classifyId+" limit 1";
+        try {
+            Statement stm2 = CAPSTONDB.getConnection().createStatement();
+            stm2.executeUpdate(sql);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
 }

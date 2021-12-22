@@ -1,6 +1,7 @@
 package entity.bicycle;
 
 import entity.db.CAPSTONDB;
+import entity.dock.DockBike;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,6 +9,7 @@ import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 public class BorrowingBike {
     private Long id;
@@ -16,18 +18,21 @@ public class BorrowingBike {
     private Long borrowedAtDockId;
     private Timestamp totalTime;
     private Timestamp borrowedAt;
+    private Integer classifyId;
+    private String totalTimeDisplay;
 
     public BorrowingBike() {
 
     }
 
-    public BorrowingBike(Long id, Long userId, Long bikeId, Long borrowedAtDockId, Timestamp totalTime, Timestamp borrowedAt) {
+    public BorrowingBike(Long id, Long userId, Long bikeId, Long borrowedAtDockId, Timestamp totalTime, Timestamp borrowedAt, Integer classifyId) {
         this.id = id;
         this.userId = userId;
         this.bikeId = bikeId;
         this.borrowedAtDockId = borrowedAtDockId;
         this.totalTime = totalTime;
         this.borrowedAt = borrowedAt;
+        this.classifyId =classifyId;
     }
 
     public Long getId() {
@@ -78,44 +83,43 @@ public class BorrowingBike {
         this.borrowedAt = borrowedAt;
     }
 
-    public BorrowingBike getBorrowingBikeByBikeId(Long bikeId) {
-        try {
-            Statement stm = CAPSTONDB.getConnection().createStatement();
-            String sql = "SELECT * FROM borrowing_bikes WHERE bike_id = "+bikeId;
-            ResultSet res = stm.executeQuery(sql);
-            if (res.next()) {
-                BorrowingBike borrowingBike = new BorrowingBike();
-                borrowingBike.setId(res.getLong("id"));
-                borrowingBike.setUserId(res.getLong("user_id"));
-                borrowingBike.setBikeId(res.getLong("bike_id"));
-                borrowingBike.setTotalTime(res.getTimestamp("total_time"));
-                borrowingBike.setBorrowedAt(res.getTimestamp("borrowed_at"));
-                borrowingBike.setBorrowedAtDockId(res.getLong("borrowed_at_dock_id"));
-                return borrowingBike;
-            }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        return null;
+    public Integer getClassifyId() {
+        return classifyId;
     }
 
-    public void returnBorrowingBikeByBikeId(Long bikeId, Long dockId) {
-        try {
-            //Đoạn này vẫn lỗi
-            String sql1 = "SELECT * FROM borrowing_bikes where bike_id = "+bikeId;
-            Statement stm = CAPSTONDB.getConnection().createStatement();
-            ResultSet res = stm.executeQuery(sql1);
-            Map<String, Object> borrowing = new HashMap<>();
-            if (res.next()) {
-                borrowing.put("", res.getLong("id"));
-            }
-
-            String sql = "DELETE FROM borrowing_bikes WHERE bike_id = "+bikeId;
-            stm.executeUpdate(sql);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
+    public void setClassifyId(Integer classifyId) {
+        this.classifyId = classifyId;
     }
+
+    public void setTotalTimeDisplay(String totalTimeDisplay) {
+        this.totalTimeDisplay = totalTimeDisplay;
+    }
+
+    public String getTotalTimeDisplay() {
+        return totalTimeDisplay;
+    }
+
+//    public BorrowingBike getBorrowingBikeByBikeId(Long bikeId) {
+//        try {
+//            Statement stm = CAPSTONDB.getConnection().createStatement();
+//            String sql = "SELECT * FROM borrowing_bikes WHERE bike_id = "+bikeId;
+//            ResultSet res = stm.executeQuery(sql);
+//            if (res.next()) {
+//                BorrowingBike borrowingBike = new BorrowingBike();
+//                borrowingBike.setId(res.getLong("id"));
+//                borrowingBike.setUserId(res.getLong("user_id"));
+//                borrowingBike.setBikeId(res.getLong("bike_id"));
+//                borrowingBike.setTotalTime(res.getTimestamp("total_time"));
+//                borrowingBike.setBorrowedAt(res.getTimestamp("borrowed_at"));
+//                borrowingBike.setBorrowedAtDockId(res.getLong("borrowed_at_dock_id"));
+//                borrowingBike.setClassifyId(res.getInt("classify_id"));
+//                return borrowingBike;
+//            }
+//        } catch (SQLException throwables) {
+//            throwables.printStackTrace();
+//        }
+//        return null;
+//    }
 
     public void addBorrowingBike(Long userId, Long bikeId) {
         try {
@@ -129,18 +133,91 @@ public class BorrowingBike {
                 objectMap.put("dockId", res.getLong("dock_id"));
                 objectMap.put("locationAtDock", res.getLong("location_at_dock"));
                 objectMap.put("dockBikeId", res.getLong("db.id"));
+                objectMap.put("classifyId", res.getInt("classify_id"));
             }
 
-            String sql1 = "UPDATE dock_bike SET bike_id = 0 WHERE id = "+Long.parseLong(objectMap.get("dockBikeId").toString());
-            Statement stm2 = CAPSTONDB.getConnection().createStatement();
-            stm2.executeUpdate(sql1);
-
             Statement stm = CAPSTONDB.getConnection().createStatement();
-            String sql = "INSERT INTO borrowing_bikes (`user_id`,`bike_id`,`borrowed_at`,`borrowed_at_dock_id`) VALUES ("+userId+","+bikeId+","+new Timestamp(System.currentTimeMillis())+","+Long.parseLong(objectMap.get("dockId").toString())+")";
+            String sql = "INSERT INTO borrowing_bikes (`user_id`,`bike_id`,`borrowed_at`,`borrowed_at_dock_id`, `classify_id`) " +
+                    "VALUES ("+userId+","+bikeId+","+new Timestamp(System.currentTimeMillis())+","+ (Long) objectMap.get("dockId")+","+ (int) objectMap.get("classifyId")+")";
             stm.executeUpdate(sql);
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
     }
+
+    public void removeBikeBorrowing(Long bikeId) {
+        String sql = "DELETE FROM borrowing_bikes where bike_id = "+bikeId;
+        try {
+            Statement stm2 = CAPSTONDB.getConnection().createStatement();
+            stm2.executeUpdate(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public BorrowingBike viewDetailBorrowingBikeByBikeId(Long bikeId) {
+        try {
+            String query = "SELECT * FROM borrowing_bikes WHERE bike_id = "+bikeId;
+            Statement stm1 = CAPSTONDB.getConnection().createStatement();
+            ResultSet res = stm1.executeQuery(query);
+            if (res.next()) {
+                BorrowingBike borrowingBike = new BorrowingBike();
+                borrowingBike.setId(res.getLong("id"));
+                borrowingBike.setBikeId(res.getLong("bike_id"));
+                borrowingBike.setBorrowedAtDockId(res.getLong("borrowed_at_dock_id"));
+                borrowingBike.setUserId(res.getLong("user_id"));
+                borrowingBike.setBorrowedAt(res.getTimestamp("borrowed_at"));
+                Long current = System.currentTimeMillis();
+                Long borrowedAtMilli = res.getTimestamp("borrowed_at").getTime();
+                borrowingBike.setTotalTime(new Timestamp(current-borrowedAtMilli));
+                borrowingBike.setClassifyId(res.getInt("classify_id"));
+
+                long HH = TimeUnit.MILLISECONDS.toHours(current-borrowedAtMilli);
+                long MM = TimeUnit.MILLISECONDS.toMinutes(current-borrowedAtMilli) % 60;
+                long SS = TimeUnit.MILLISECONDS.toSeconds(current-borrowedAtMilli) % 60;
+                String timeInHHMMSS = String.format("%02d:%02d:%02d", HH, MM, SS);
+
+                borrowingBike.setTotalTimeDisplay(timeInHHMMSS);
+                return borrowingBike;
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
+
+    public BorrowingBike viewDetailBorrowingBikeByUserId(Long userId) {
+        try {
+            String query = "SELECT * FROM borrowing_bikes WHERE user_id = "+userId;
+            Statement stm1 = CAPSTONDB.getConnection().createStatement();
+            ResultSet res = stm1.executeQuery(query);
+            if (res.next()) {
+                BorrowingBike borrowingBike = new BorrowingBike();
+                borrowingBike.setId(res.getLong("id"));
+                borrowingBike.setBikeId(res.getLong("bike_id"));
+                borrowingBike.setBorrowedAtDockId(res.getLong("borrowed_at_dock_id"));
+                borrowingBike.setUserId(res.getLong("user_id"));
+                borrowingBike.setBorrowedAt(res.getTimestamp("borrowed_at"));
+                Long current = System.currentTimeMillis();
+                Long borrowedAtMilli = res.getTimestamp("borrowed_at").getTime();
+                borrowingBike.setTotalTime(new Timestamp(current-borrowedAtMilli));
+                borrowingBike.setClassifyId(res.getInt("classify_id"));
+
+                long HH = TimeUnit.MILLISECONDS.toHours(current-borrowedAtMilli);
+                long MM = TimeUnit.MILLISECONDS.toMinutes(current-borrowedAtMilli) % 60;
+                long SS = TimeUnit.MILLISECONDS.toSeconds(current-borrowedAtMilli) % 60;
+                String timeInHHMMSS = String.format("%02d:%02d:%02d", HH, MM, SS);
+
+                borrowingBike.setTotalTimeDisplay(timeInHHMMSS);
+                return borrowingBike;
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
+
 }
