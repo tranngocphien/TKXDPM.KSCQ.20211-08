@@ -20,6 +20,8 @@ public class BorrowingBike {
     private Timestamp borrowedAt;
     private Integer classifyId;
     private String totalTimeDisplay;
+    private Double deposit;
+    private Double totalAmount;
 
     public BorrowingBike() {
 
@@ -99,7 +101,23 @@ public class BorrowingBike {
         return totalTimeDisplay;
     }
 
-//    public BorrowingBike getBorrowingBikeByBikeId(Long bikeId) {
+    public Double getDeposit() {
+        return deposit;
+    }
+
+    public void setDeposit(Double deposit) {
+        this.deposit = deposit;
+    }
+
+    public Double getTotalAmount() {
+        return totalAmount;
+    }
+
+    public void setTotalAmount(Double totalAmount) {
+        this.totalAmount = totalAmount;
+    }
+
+    //    public BorrowingBike getBorrowingBikeByBikeId(Long bikeId) {
 //        try {
 //            Statement stm = CAPSTONDB.getConnection().createStatement();
 //            String sql = "SELECT * FROM borrowing_bikes WHERE bike_id = "+bikeId;

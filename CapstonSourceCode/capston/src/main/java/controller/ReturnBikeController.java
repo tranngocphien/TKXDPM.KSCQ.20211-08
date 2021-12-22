@@ -65,7 +65,6 @@ public class ReturnBikeController extends BaseController{
         long totalMoney = 0;
         if (totalTime <= thirtyMinutes) totalMoney = 10000;
         else totalMoney = (totalTime-thirtyMinutes)/thirtyMinutes * 3000 + 10000;
-
         return classifyId == 1 ? totalMoney : totalMoney*1.5;
     }
 }

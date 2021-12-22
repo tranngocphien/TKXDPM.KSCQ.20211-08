@@ -13,6 +13,8 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import utils.Configs;
 import views.screen.BaseScreenHandler;
+import views.screen.bicycle.ViewBorrowingBicycleScreenHandler;
+import views.screen.dock.ViewDockScreenHandler;
 
 import java.awt.event.ActionEvent;
 import java.io.IOException;
@@ -25,6 +27,9 @@ import java.util.ResourceBundle;
 public class HomeScreenHandler extends BaseScreenHandler{
     @FXML
     private Button buttonDock;
+
+    @FXML
+    private Button btnViewBorrowingBike;
 
     @FXML
     private GridPane gdListDocks;
@@ -56,6 +61,10 @@ public class HomeScreenHandler extends BaseScreenHandler{
 
         buttonDock.setOnMouseClicked(e -> {
             searchDockByString();
+        });
+
+        btnViewBorrowingBike.setOnMouseClicked(e-> {
+            viewDetailBorrowingBike();
         });
     }
 
@@ -91,5 +100,17 @@ public class HomeScreenHandler extends BaseScreenHandler{
         } catch (SQLException | IOException exp) {
             exp.printStackTrace();
         }
+    }
+
+    public void viewDetailBorrowingBike() {
+        ViewBorrowingBicycleScreenHandler borrowingBicycleScreenHandler = null;
+        try {
+            borrowingBicycleScreenHandler = new ViewBorrowingBicycleScreenHandler(this.stage, Configs.BORROWING_BIKE_PATH);
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        }
+        borrowingBicycleScreenHandler.setScreenTitle("CHI TIẾT XE ĐANG THUÊ");
+        borrowingBicycleScreenHandler.setPreviousScreen(this.homeScreenHandler);
+        borrowingBicycleScreenHandler.show();
     }
 }

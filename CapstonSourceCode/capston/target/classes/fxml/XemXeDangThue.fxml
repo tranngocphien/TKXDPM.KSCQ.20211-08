@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane prefHeight="120.0" prefWidth="1366.0" style="-fx-border-color: #777777; -fx-border-width: 0.25;">
+         <children>
+            <ImageView fitHeight="126.0" fitWidth="200.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@/images/capstonelogo.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="502.0" layoutY="43.0" text="THÔNG TIN XE ĐANG THUÊ" textAlignment="CENTER" textFill="#008094">
+               <font>
+                  <Font name="Consolas Bold Italic" size="30.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Button fx:id="btnReturnBike" layoutX="574.0" layoutY="566.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="254.0" style="-fx-background-color: red;" text="Trả xe" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+      <Pane layoutX="736.0" layoutY="132.0" prefHeight="376.0" prefWidth="538.0" style="-fx-border-color: #777777; -fx-border-width: 0.25;">
+         <children>
+            <Label layoutX="49.0" layoutY="35.0" text="Mã xe">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="49.0" layoutY="91.0" text="Loại xe">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="49.0" layoutY="203.0" text="Tiền cọc">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="49.0" layoutY="262.0" text="Thời gian thuê">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="49.0" layoutY="329.0" text="Số tiền phải trả">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="bikeCode" layoutX="239.0" layoutY="35.0" text="XDT0001">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="bikeName" layoutX="239.0" layoutY="91.0" text="Xe đạp thường">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="deposit" layoutX="239.0" layoutY="203.0" text="500.000">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="totalTime" layoutX="239.0" layoutY="262.0" text="1:30:20">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="totalMoney" layoutX="239.0" layoutY="329.0" text="200.000">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="49.0" layoutY="148.0" text="Tình trạng xe">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="pin" layoutX="236.0" layoutY="148.0" text="Lượng pin còn lại: 30%">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <ImageView fitHeight="376.0" fitWidth="645.0" layoutX="90.0" layoutY="132.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@/images/xedap.jpg" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

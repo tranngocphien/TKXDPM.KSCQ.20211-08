@@ -42,7 +42,7 @@ public class ReturnBicycleScreenHandler extends BaseScreenHandler {
     public ReturnBicycleScreenHandler(Stage stage, String screenPath, Vehicle vehicle) throws IOException {
         super(stage, screenPath);
         setBController(new ReturnBikeController());
-        vehicle.setBikeCode("BIKECO0010");
+        vehicle.setBikeCode(vehicle.getBikeCode());
 
 //        ObservableList<String> data = FXCollections.observableArrayList("text1", "text2", "text3");
 //        cbbListDock.setItems(data);

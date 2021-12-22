@@ -1,6 +1,11 @@
 package entity.bicycle;
 
+import entity.db.CAPSTONDB;
+
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Vehicle {
@@ -9,6 +14,7 @@ public class Vehicle {
     private String name;
     private Long dockId;
     private Long locationAtDock;
+    private Integer pin;
 
     public Vehicle() {
 
@@ -68,7 +74,26 @@ public class Vehicle {
         this.locationAtDock = locationAtDock;
     }
 
+    public void setPin(Integer pin) {
+        this.pin = pin;
+    }
+
+    public Integer getPin() {
+        return pin;
+    }
+
     public Vehicle searchVehicleById(Long id) throws SQLException {
+        String sql = "SELECT * FROM bike where id = "+id;
+        Statement stm = CAPSTONDB.getConnection().createStatement();
+        ResultSet res = stm.executeQuery(sql);
+        if(res.next()) {
+            Vehicle vehicle = new ElectricBicycle();
+            vehicle.setId(res.getLong("id"));
+            vehicle.setBikeCode(res.getString("bike_code"));
+            vehicle.setName(res.getString("name"));
+            vehicle.setPin(res.getInt("pin"));
+            return vehicle;
+        }
         return null;
     }
 
@@ -78,6 +103,20 @@ public class Vehicle {
 
     public void returnBike(String bikeCode, Long dockId) {
 
+    }
+
+    public Double getDeposit(Integer classifyId) {
+        String sql = "SELECT * FROM classify_bike WHERE id = "+classifyId;
+        try {
+            Statement stm = CAPSTONDB.getConnection().createStatement();
+            ResultSet res = stm.executeQuery(sql);
+            if(res.next()) {
+                return res.getDouble("price");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 }
