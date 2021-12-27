@@ -52,40 +52,45 @@ public class ReturnBicycleScreenHandler extends BaseScreenHandler {
         cbbListDock.getItems().setAll(items);
 
         confirmReturnBike.setOnAction(event -> {
-            returnBike();
+            returnBike(vehicle.getId());
         });
 
     }
 
-    public void returnBike() {
+    public void returnBike(Long bikeId) {
         try {
             String str = cbbListDock.getValue().toString();
             Long dockId = Long.parseLong(str.substring(7));
             System.out.println(str.substring(7));
             System.out.println("Mã xe trả: "+ bikeCode.getText());
+            getBController().returnBike(bikeId,dockId);
+            popUpSuccess();
         } catch (Exception e) {
-
-//            try {
-//                PopupScreenHandler popupScreenHandler = new PopupScreenHandler(this.stage, Configs.POPUP_PATH, "KẾT QUẢ TRẢ XE", "TRẢ XE THÀNH CÔNG");
-//                popupScreenHandler.setScreenTitle("Trả xe thành thông");
-//                popupScreenHandler.setPreviousScreen(this.homeScreenHandler);
-//                popupScreenHandler.show();
-//            } catch (IOException io) {
-//                io.printStackTrace();
-//            }
+            popUpError();
             e.printStackTrace();
         }
+    }
 
-        //getBController().returnBike(1l,dockId);
-
+    public void popUpSuccess() {
         PopupScreenHandler popupScreenHandler = null;
         try {
-            popupScreenHandler = new PopupScreenHandler(this.stage, Configs.POPUP_PATH, "KẾT QUẢ TRẢ XE", "TRẢ XE THÀNH CÔNG");
+            popupScreenHandler = new PopupScreenHandler(this.stage, Configs.POPUP_PATH_SUCCESS, "KẾT QUẢ TRẢ XE", "TRẢ XE THÀNH CÔNG");
         } catch (IOException e) {
             e.printStackTrace();
         }
         popupScreenHandler.setScreenTitle("Trả xe thành thông");
         popupScreenHandler.setPreviousScreen(this.homeScreenHandler);
         popupScreenHandler.show();
+    }
+
+    public void popUpError() {
+        try {
+            PopupScreenHandler popupScreenHandler = new PopupScreenHandler(this.stage, Configs.POPUP_PATH_ERROR);
+            popupScreenHandler.setScreenTitle("Trả xe thất bại");
+            popupScreenHandler.setPreviousScreen(this.homeScreenHandler);
+            popupScreenHandler.show();
+        } catch (IOException io) {
+            io.printStackTrace();
+        }
     }
 }

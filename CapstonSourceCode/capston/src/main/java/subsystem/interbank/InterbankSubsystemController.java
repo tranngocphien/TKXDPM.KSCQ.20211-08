@@ -30,6 +30,8 @@ public class InterbankSubsystemController {
      */
     private static final String VERSION = "1.0.1";
 
+    private static final String APP_CODE = "r2+3aNfQ4A==";
+
     private static InterbankBoundary interbankBoundary = new InterbankBoundary();
 
     /**
@@ -55,6 +57,11 @@ public class InterbankSubsystemController {
         Map<String, Object> requestMap = new MyMap();
         requestMap.put("version", VERSION);
         requestMap.put("transaction", transaction);
+
+        String data = generateData(requestMap);
+        String hasCode = Utils.md5(data);
+        requestMap.put("hashCode", hasCode);
+        requestMap.put("appCode", APP_CODE);
 
         String responseText = interbankBoundary.query(Configs.PROCESS_TRANSACTION_URL, generateData(requestMap));
         System.out.println("Response: " + responseText);
@@ -93,8 +100,15 @@ public class InterbankSubsystemController {
         requestMap.put("version", VERSION);
         requestMap.put("transaction", transaction);
 
+        String data = generateData(requestMap);
+        String hasCode = Utils.md5(data);
+        requestMap.put("hashCode", hasCode);
+        requestMap.put("appCode", APP_CODE);
+
         String responseText = interbankBoundary.query(Configs.PROCESS_TRANSACTION_URL, generateData(requestMap));
         System.out.println("Response: " + responseText);
+        card.deleteCard(card.getCardCode());
+
         MyMap response = null;
         try {
             response = MyMap.toMyMap(responseText, 0);
@@ -128,7 +142,7 @@ public class InterbankSubsystemController {
                 Integer.parseInt((String) transcation.get("cvvCode")), (String) transcation.get("dateExpired"));
         PaymentTransaction trans = new PaymentTransaction((String) response.get("errorCode"), card,
                 (String) transcation.get("transactionId"), (String) transcation.get("transactionContent"),
-                Integer.parseInt((String) transcation.get("amount")), (String) transcation.get("createdAt"));
+                Integer.parseInt((String) transcation.get("amount")), (String) transcation.get("createdAt"), (String) transcation.get("transactionContent"));
 
         switch (trans.getErrorCode()) {
             case "00":
@@ -152,6 +166,31 @@ public class InterbankSubsystemController {
         }
 
         return trans;
+    }
+
+
+    public static void main(String[] args) {
+        Map<String, Object> transaction = new MyMap();
+        CreditCard card = new CreditCard("kscq1_group8_2021", "Group 8", 853, "1125");
+        try {
+            transaction.putAll(MyMap.toMyMap(card));
+        } catch (IllegalArgumentException | IllegalAccessException e) {
+            throw new InvalidCardException();
+        }
+        transaction.put("command", PAY_COMMAND);
+        transaction.put("transactionContent", "ahihihihi");
+        transaction.put("amount", 1000);
+        transaction.put("createdAt", Utils.getToday());
+
+        Map<String, Object> requestMap = new MyMap();
+        requestMap.put("version", VERSION);
+        requestMap.put("transaction", transaction);
+
+        String data = ((MyMap) requestMap).toJSON();
+        String hasCode = Utils.md5(data);
+        System.out.println(hasCode);
+        System.out.println("=======================================");
+        System.out.println(data);
     }
 
 }

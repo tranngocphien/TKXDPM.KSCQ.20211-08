@@ -2,6 +2,7 @@ package entity.invoice;
 
 import entity.db.CAPSTONDB;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
@@ -85,15 +86,30 @@ public class Invoice {
         this.createdAt = createdAt;
     }
 
-    public void createInvoice(Double totalAmount, Long totalTime, Long bikeId, Long dockId, Timestamp createdAt, Long userId) {
+    public Invoice createInvoice(Double totalAmount, Long totalTime, Long bikeId, Long dockId, Timestamp createdAt, Long userId) {
         String sql = "INSERT INTO `invoice` (`total_amount`, `total_time`, `bike_id`, `dock_id`, `created_at`, `user_id`) " +
                 "VALUES ("+totalAmount+", "+totalTime+", "+bikeId+", "+dockId+", '"+createdAt+"', "+userId+")";
         try {
             Statement stm = CAPSTONDB.getConnection().createStatement();
             stm.executeUpdate(sql);
+
+            String query = "SELECT * FROM invoice where user_id = "+userId+" order by created_at limit 1";
+            Statement stm1 = CAPSTONDB.getConnection().createStatement();
+            ResultSet rs = stm1.executeQuery(query);
+            if (rs.next()) {
+                Invoice invoice = new Invoice();
+                invoice.setId(rs.getLong("id"));
+                invoice.setCreatedAt(rs.getTimestamp("created_at"));
+                invoice.setBikeId(rs.getLong("bike_id"));
+                invoice.setDockId(rs.getLong("dock_id"));
+                invoice.setTotalAmount(rs.getDouble("total_amount"));
+                invoice.setUserId(userId);
+                invoice.setTotalTime(rs.getLong("total_time"));
+                return invoice;
+            }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-
+        return null;
     }
 }
