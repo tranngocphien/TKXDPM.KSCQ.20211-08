@@ -25,6 +25,10 @@ public class CreditCard {
     public CreditCard() {
 
     }
+
+    public String getCardCode() {
+        return this.cardCode;
+    }
     public CreditCard getCreditCardByCardCode(String cardCode) {
         try {
             Statement stm = CAPSTONDB.getConnection().createStatement();
@@ -42,5 +46,25 @@ public class CreditCard {
             throw new  InvalidCardException();
         }
         return null;
+    }
+
+    public void createCard(CreditCard creditCard) {
+        String sql = "INSERT INTO `lichitec_capston`.`card` (`card_code`, `owner`, `date_expired`, `cvv`) VALUES ('"+creditCard.cardCode+"', '"+creditCard.owner+"', '"+creditCard.dateExpired+"', "+ creditCard.cvvCode +");";
+        try {
+            Statement stm = CAPSTONDB.getConnection().createStatement();
+            stm.executeUpdate(sql);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    public void deleteCard(String cardCode){
+        String sql = "DELETE FROM card where cardCode = '"+cardCode+"'";
+        try {
+            Statement stm = CAPSTONDB.getConnection().createStatement();
+            stm.executeUpdate(sql);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 }
