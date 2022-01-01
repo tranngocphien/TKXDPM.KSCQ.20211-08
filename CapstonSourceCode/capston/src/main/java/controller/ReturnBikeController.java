@@ -7,6 +7,7 @@ import entity.dock.Dock;
 import entity.dock.DockBike;
 import entity.invoice.Invoice;
 import entity.payment.CreditCard;
+import entity.payment.PaymentTransaction;
 import subsystem.InterbankInterface;
 import subsystem.InterbankSubsystem;
 
@@ -18,7 +19,7 @@ import static utils.Configs.userId;
 
 public class ReturnBikeController extends BaseController{
 
-    InterbankInterface interbankInterface = new InterbankSubsystem();
+    PaymentController paymentController = new PaymentController();
 
     public List<Dock> getListDock()  {
         try {
@@ -41,16 +42,16 @@ public class ReturnBikeController extends BaseController{
             Double totalAmount = calculateTotalAmount(totalTime, borrowingBike.getClassifyId()); // tính toán tổng tiền
             new Invoice().createInvoice(totalAmount, totalTime, bikeId, dockId, new Timestamp(System.currentTimeMillis()), borrowingBike.getUserId()); // tạo hóa đơn
             borrowingBike.removeBikeBorrowing(bikeId);//xóa xe đang mượn
-
-            CreditCard creditCard = new CreditCard().getCreditCardByCardCode("TKXDPM08");
+            CreditCard creditCard = new CreditCard().getCreditCardByCardCode("kscq1_group8_2021");
 
             Double depositMoney = 0d;
 
-            if (borrowingBike.getClassifyId() == 1) depositMoney = 200000d;
-            else if (borrowingBike.getClassifyId() == 2) depositMoney = 400000d;
-            else depositMoney = 550000d;
+            if (borrowingBike.getClassifyId() == 1) depositMoney = new Vehicle().getDeposit(borrowingBike.getClassifyId());
+            else if (borrowingBike.getClassifyId() == 2) depositMoney =  new Vehicle().getDeposit(borrowingBike.getClassifyId());
+            else depositMoney =  new Vehicle().getDeposit(borrowingBike.getClassifyId());
 
-            interbankInterface.refundDeposit(creditCard, (int) (depositMoney - totalAmount), "Refunds money");
+            //paymentController.refundDeposit(creditCard, (int) (depositMoney - totalAmount), "Refunds money");
+            paymentController.refundDeposit((int) (depositMoney - totalAmount), "Refunds money", creditCard);
 
         } catch (Exception e) {
             e.printStackTrace();
