@@ -74,15 +74,15 @@ public class PaymentController extends BaseController{
         return result;
     }
 
-    public Map<String, String> refundDeposit(int amount, String content, String cardNumber, String cardHolderName, String expirationDate, String securityCode){
+    public Map<String, String> refundDeposit(int amount, String content, CreditCard creditCard){
         Map<String, String> result = new Hashtable<>();
         result.put("RESULT", "PAYMENT FAILED!");
         try {
-            this.card = new CreditCard(cardNumber, cardHolderName, Integer.parseInt(securityCode),
-                    getExpirationDate(expirationDate));
+//            this.card = new CreditCard(cardNumber, cardHolderName, Integer.parseInt(securityCode),
+//                    getExpirationDate(expirationDate));
 
             this.interbank = new InterbankSubsystem();
-            PaymentTransaction transaction = interbank.refundDeposit(card, amount, content);
+            PaymentTransaction transaction = interbank.refundDeposit(creditCard, amount, content);
 
             result.put("RESULT", "PAYMENT SUCCESSFUL!");
             result.put("MESSAGE", "You have succesffully paid the order!");

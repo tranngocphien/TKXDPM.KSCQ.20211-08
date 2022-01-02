@@ -32,12 +32,12 @@ public class CreditCard {
     public CreditCard getCreditCardByCardCode(String cardCode) {
         try {
             Statement stm = CAPSTONDB.getConnection().createStatement();
-            String sql = "SELECT * FROM card where card_code = "+cardCode;
+            String sql = String.format("SELECT * FROM card where card_code = '%s'",cardCode);
             ResultSet res = stm.executeQuery(sql);
             if (res.next()) {
                 String owner = res.getString("owner");
-                String date = res.getDate("date_expired").toString();
-                int cvv = 123455;
+                String date = res.getString("date_expired");
+                Integer cvv = res.getInt("cvv");
                 CreditCard creditCard = new CreditCard(cardCode, owner, cvv, date);
                 return creditCard;
             }
@@ -59,7 +59,7 @@ public class CreditCard {
     }
 
     public void deleteCard(String cardCode){
-        String sql = "DELETE FROM card where cardCode = '"+cardCode+"'";
+        String sql = "DELETE FROM card where card_code = '"+cardCode+"'";
         try {
             Statement stm = CAPSTONDB.getConnection().createStatement();
             stm.executeUpdate(sql);

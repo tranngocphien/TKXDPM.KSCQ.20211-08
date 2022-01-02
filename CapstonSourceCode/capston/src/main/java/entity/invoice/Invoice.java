@@ -93,7 +93,7 @@ public class Invoice {
             Statement stm = CAPSTONDB.getConnection().createStatement();
             stm.executeUpdate(sql);
 
-            String query = "SELECT * FROM invoice where user_id = "+userId+" order by created_at limit 1";
+            String query = "SELECT * FROM invoice where user_id = "+userId+" order by created_at desc limit 1";
             Statement stm1 = CAPSTONDB.getConnection().createStatement();
             ResultSet rs = stm1.executeQuery(query);
             if (rs.next()) {
