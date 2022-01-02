@@ -1,5 +1,7 @@
 package views.screen.rent_bicycle;
 
+import controller.RentBicycleController;
+import controller.ViewBorrowingBicycleController;
 import entity.bicycle.Bicycle;
 import entity.bicycle.CoupleBike;
 import entity.bicycle.ElectricBicycle;
@@ -31,9 +33,14 @@ public class RentBicycleScreenHandler extends BaseScreenHandler {
     @FXML
     private Button btnRentBicycle;
 
+    public RentBicycleController getBController() {
+        return (RentBicycleController) super.getBController();
+    }
+
     public RentBicycleScreenHandler(Stage stage, String screenPath, Vehicle vehicle) throws IOException {
         super(stage, screenPath);
 
+        setBController(new RentBicycleController());
         lbBicycleCode.setText(vehicle.getBikeCode());
         if(vehicle instanceof Bicycle){
             lbType.setText("Xe đạp thường");
@@ -48,7 +55,10 @@ public class RentBicycleScreenHandler extends BaseScreenHandler {
             lbBaterry.setText(((ElectricBicycle) vehicle).getPin().toString() );
         }
 
+        if(getBController().isBorrowing()){
+            btnRentBicycle.setDisable(true);
 
+        }
 
         btnRentBicycle.setOnMouseClicked(e -> {
             PaymentScreenHandler paymentScreenHandler = null;

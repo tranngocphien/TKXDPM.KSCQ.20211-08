@@ -1,5 +1,6 @@
 package views.screen.home;
 
+import controller.RentBicycleController;
 import controller.SearchDockController;
 import entity.dock.Dock;
 import javafx.fxml.FXML;
@@ -66,6 +67,10 @@ public class HomeScreenHandler extends BaseScreenHandler{
         btnViewBorrowingBike.setOnMouseClicked(e-> {
             viewDetailBorrowingBike();
         });
+
+        if(new RentBicycleController().isBorrowing()){
+            btnViewBorrowingBike.setDisable(true);
+        }
     }
 
 

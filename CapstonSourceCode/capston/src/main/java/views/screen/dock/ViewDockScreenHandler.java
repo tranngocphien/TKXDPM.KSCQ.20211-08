@@ -130,7 +130,6 @@ public class ViewDockScreenHandler extends BaseScreenHandler {
     @FXML
     public void back(ActionEvent event) {
         getPreviousScreen().show();
-
     }
 
 
