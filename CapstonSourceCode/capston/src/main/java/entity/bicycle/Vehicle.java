@@ -14,7 +14,6 @@ public class Vehicle {
     private String name;
     private Long dockId;
     private Long locationAtDock;
-    private Integer pin;
 
     public Vehicle() {
 
@@ -74,28 +73,63 @@ public class Vehicle {
         this.locationAtDock = locationAtDock;
     }
 
-    public void setPin(Integer pin) {
-        this.pin = pin;
-    }
-
-    public Integer getPin() {
-        return pin;
-    }
-
     public Vehicle searchVehicleById(Long id) throws SQLException {
         String sql = "SELECT * FROM bike where id = "+id;
         Statement stm = CAPSTONDB.getConnection().createStatement();
         ResultSet res = stm.executeQuery(sql);
         if(res.next()) {
-            Vehicle vehicle = new ElectricBicycle();
+            Vehicle vehicle;
+            switch (res.getInt("classify_id")){
+                case 1:
+                    vehicle = new Bicycle();
+                    break;
+                case 2:
+                    vehicle = new CoupleBike();
+                    break;
+                case 3:
+                    vehicle = new ElectricBicycle();
+                    ((ElectricBicycle) vehicle).setPin(res.getInt("pin"));
+                    break;
+                default:
+                    return null;
+            }
             vehicle.setId(res.getLong("id"));
             vehicle.setBikeCode(res.getString("bike_code"));
             vehicle.setName(res.getString("name"));
-            vehicle.setPin(res.getInt("pin"));
             return vehicle;
         }
         return null;
     }
+
+    public Vehicle searchVehicleByCode(String bikeCode, long id) throws SQLException {
+        String sql = "SELECT * FROM bike b left join dock_bike db on db.bike_id = b.id where b.bike_code = '" + bikeCode + "' and db.dock_id = "+id;
+        System.out.println(sql);
+        Statement stm = CAPSTONDB.getConnection().createStatement();
+        ResultSet res = stm.executeQuery(sql);
+        if(res.next()) {
+            Vehicle vehicle;
+            switch (res.getInt("classify_id")){
+                case 1:
+                    vehicle = new Bicycle();
+                    break;
+                case 2:
+                    vehicle = new CoupleBike();
+                    break;
+                case 3:
+                    vehicle = new ElectricBicycle();
+                    ((ElectricBicycle) vehicle).setPin(res.getInt("pin"));
+                    break;
+                default:
+                    return null;
+            }
+            vehicle.setId(res.getLong("id"));
+            vehicle.setBikeCode(res.getString("bike_code"));
+            vehicle.setName(res.getString("name"));
+            return vehicle;
+        }
+        return null;
+    }
+
 
     public List listBikeByDockId(Long id) throws SQLException {
         return null;

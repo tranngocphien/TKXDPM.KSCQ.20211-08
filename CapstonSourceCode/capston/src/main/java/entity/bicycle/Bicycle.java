@@ -59,7 +59,7 @@ public class Bicycle extends Vehicle{
 
     public static void main(String[] args) throws SQLException {
         Bicycle bicycle = new Bicycle();
-        List list = bicycle.listBikeByDockId(2l);
-        System.out.println(list);
+        Vehicle vehicle = bicycle.searchVehicleById(583l);
+        System.out.println(vehicle);
     }
 }

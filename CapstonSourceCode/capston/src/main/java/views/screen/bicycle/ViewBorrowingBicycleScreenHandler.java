@@ -3,6 +3,7 @@ package views.screen.bicycle;
 import controller.SearchDockController;
 import controller.ViewBorrowingBicycleController;
 import entity.bicycle.BorrowingBike;
+import entity.bicycle.ElectricBicycle;
 import entity.bicycle.Vehicle;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -52,7 +53,12 @@ public class ViewBorrowingBicycleScreenHandler extends BaseScreenHandler {
 
         bikeCode.setText(vehicle.getBikeCode());
         bikeName.setText(vehicle.getName());
-        pin.setText("Lượng pin còn lại: " +vehicle.getPin());
+        if(vehicle instanceof ElectricBicycle){
+            pin.setText("Lượng pin còn lại: " + ((ElectricBicycle) vehicle).getPin());
+        }
+        else {
+            pin.setText("Xe không có pin");
+        }
         deposit.setText(borrowingBike.getDeposit().toString());
         totalTime.setText(borrowingBike.getTotalTimeDisplay());
         totalMoney.setText(borrowingBike.getTotalAmount().toString());

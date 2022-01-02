@@ -1,7 +1,6 @@
 package controller;
 
-import entity.bicycle.BorrowingBike;
-import entity.bicycle.Vehicle;
+import entity.bicycle.*;
 
 import java.sql.SQLException;
 
@@ -17,7 +16,6 @@ public class ViewBorrowingBicycleController extends BaseController{
     }
 
     public Vehicle detailVehicle(Long bikeId) {
-
         try {
             Vehicle vehicle = new Vehicle().searchVehicleById(bikeId);
             return vehicle;
@@ -34,4 +32,6 @@ public class ViewBorrowingBicycleController extends BaseController{
         else totalMoney = (totalTime-thirtyMinutes)/thirtyMinutes * 3000 + 10000;
         return classifyId == 1 ? totalMoney : totalMoney*1.5;
     }
+
+
 }
