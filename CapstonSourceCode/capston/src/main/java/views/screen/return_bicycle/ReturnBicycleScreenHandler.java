@@ -10,12 +10,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import utils.Configs;
 import views.screen.BaseScreenHandler;
 import views.screen.dock.ViewDockScreenHandler;
 import views.screen.popup.PopupScreenHandler;
 
+import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -92,5 +94,11 @@ public class ReturnBicycleScreenHandler extends BaseScreenHandler {
         } catch (IOException io) {
             io.printStackTrace();
         }
+    }
+
+    @FXML
+    void back(MouseEvent event) {
+        getPreviousScreen().show();
+
     }
 }

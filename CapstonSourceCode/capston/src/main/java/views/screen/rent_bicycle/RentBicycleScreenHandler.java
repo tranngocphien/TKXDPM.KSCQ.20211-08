@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import utils.Configs;
 import views.screen.BaseScreenHandler;
@@ -70,6 +71,12 @@ public class RentBicycleScreenHandler extends BaseScreenHandler {
                 ioException.printStackTrace();
             }
         });
+    }
+
+    @FXML
+    void back(MouseEvent event) {
+        getPreviousScreen().show();
+
     }
 
 }

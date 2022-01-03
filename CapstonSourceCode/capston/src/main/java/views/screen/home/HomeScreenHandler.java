@@ -68,7 +68,10 @@ public class HomeScreenHandler extends BaseScreenHandler{
             viewDetailBorrowingBike();
         });
 
-        if(new RentBicycleController().isBorrowing()){
+        if((new RentBicycleController()).isBorrowing()){
+            btnViewBorrowingBike.setDisable(false);
+        }
+        else {
             btnViewBorrowingBike.setDisable(true);
         }
     }
@@ -115,7 +118,7 @@ public class HomeScreenHandler extends BaseScreenHandler{
             ioException.printStackTrace();
         }
         borrowingBicycleScreenHandler.setScreenTitle("CHI TIẾT XE ĐANG THUÊ");
-        borrowingBicycleScreenHandler.setPreviousScreen(this.homeScreenHandler);
+        borrowingBicycleScreenHandler.setPreviousScreen(this);
         borrowingBicycleScreenHandler.show();
     }
 }

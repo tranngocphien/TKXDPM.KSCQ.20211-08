@@ -85,6 +85,7 @@ public class ViewDockScreenHandler extends BaseScreenHandler {
 
         for(Vehicle bicycle : dock.getListBicycle()){
             BicycleHandler bicycleHandler = new BicycleHandler(this.stage, Configs.VEHICLE_COMPONENT_PATH, bicycle);
+            bicycleHandler.setPreviousScreen(this);
             vbBicycle.getChildren().add(bicycleHandler.getContent());
         }
 
@@ -116,6 +117,7 @@ public class ViewDockScreenHandler extends BaseScreenHandler {
             if(vehicle != null){
                 try {
                     rentBicycleScreenHandler = new RentBicycleScreenHandler(stage, Configs.RENT_BIKE_PATH,vehicle );
+                    rentBicycleScreenHandler.setPreviousScreen(this);
                     rentBicycleScreenHandler.setScreenTitle("Bicycle");
                     rentBicycleScreenHandler.show();
                 } catch (IOException ioException) {

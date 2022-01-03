@@ -8,6 +8,7 @@ import entity.bicycle.Vehicle;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import utils.Configs;
 import views.screen.BaseScreenHandler;
@@ -73,10 +74,15 @@ public class ViewBorrowingBicycleScreenHandler extends BaseScreenHandler {
         try {
             ReturnBicycleScreenHandler returnBicycleScreenHandler = new ReturnBicycleScreenHandler(stage, Configs.RETURN_BIKE_PATH, vehicle);
             returnBicycleScreenHandler.setScreenTitle("TRẢ XE");
-            returnBicycleScreenHandler.setPreviousScreen(this.homeScreenHandler);
+            returnBicycleScreenHandler.setPreviousScreen(this);
             returnBicycleScreenHandler.show();
         } catch (IOException ioException) {
             ioException.printStackTrace();
         }
+    }
+
+    @FXML
+    void back(MouseEvent event) {
+        getPreviousScreen().show();
     }
 }
