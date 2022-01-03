@@ -1,8 +1,10 @@
 package controller;
 
 import entity.bicycle.BorrowingBike;
+import entity.bicycle.Vehicle;
 import entity.dock.DockBike;
 import entity.payment.CreditCard;
+import utils.Configs;
 
 public class RentBicycleController extends BaseController{
     public void rentBike(Long bikeId, Long userId) {
@@ -17,4 +19,11 @@ public class RentBicycleController extends BaseController{
     public void createPaymentTransaction(){
 
     }
+
+    public boolean isBorrowing(){
+        return (new BorrowingBike().viewDetailBorrowingBikeByUserId(Configs.userId) != null);
+    }
+
+
+
 }

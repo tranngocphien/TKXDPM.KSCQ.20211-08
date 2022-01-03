@@ -11,20 +11,20 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/15" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane prefHeight="127.0" prefWidth="1366.0" style="-fx-border-color: #e0e0e0;" AnchorPane.bottomAnchor="641.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
+            <Button fx:id="btnBack" layoutX="26.0" layoutY="49.0" mnemonicParsing="false" onAction="#back" style="-fx-background-color: #008094;" text="Trở về" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
             <Label fx:id="lbTITLE" layoutX="617.0" layoutY="37.0" text="BÃI XE 1" textFill="#008094">
                <font>
                   <Font name="System Bold" size="36.0" />
                </font>
             </Label>
-            <Button fx:id="btnBack" layoutX="26.0" layoutY="49.0" mnemonicParsing="false" style="-fx-background-color: #008094;" text="Trở về" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Button>
             <Button layoutX="1262.0" layoutY="51.0" mnemonicParsing="false" text="Trả xe">
                <font>
                   <Font size="18.0" />
@@ -89,7 +89,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <TextField layoutX="26.0" layoutY="50.0" prefHeight="35.0" prefWidth="308.0" />
+                  <TextField fx:id="tfBicycleCode" layoutX="26.0" layoutY="50.0" prefHeight="35.0" prefWidth="308.0" />
                   <Button fx:id="btnRent" layoutX="362.0" layoutY="53.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" text="THUÊ XE" textFill="#008094">
                      <font>
                         <Font size="14.0" />

@@ -1,5 +1,7 @@
 package views.screen.rent_bicycle;
 
+import controller.RentBicycleController;
+import controller.ViewBorrowingBicycleController;
 import entity.bicycle.Bicycle;
 import entity.bicycle.CoupleBike;
 import entity.bicycle.ElectricBicycle;
@@ -8,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import utils.Configs;
 import views.screen.BaseScreenHandler;
@@ -31,9 +34,14 @@ public class RentBicycleScreenHandler extends BaseScreenHandler {
     @FXML
     private Button btnRentBicycle;
 
+    public RentBicycleController getBController() {
+        return (RentBicycleController) super.getBController();
+    }
+
     public RentBicycleScreenHandler(Stage stage, String screenPath, Vehicle vehicle) throws IOException {
         super(stage, screenPath);
 
+        setBController(new RentBicycleController());
         lbBicycleCode.setText(vehicle.getBikeCode());
         if(vehicle instanceof Bicycle){
             lbType.setText("Xe đạp thường");
@@ -48,7 +56,10 @@ public class RentBicycleScreenHandler extends BaseScreenHandler {
             lbBaterry.setText(((ElectricBicycle) vehicle).getPin().toString() );
         }
 
+        if(getBController().isBorrowing()){
+            btnRentBicycle.setDisable(true);
 
+        }
 
         btnRentBicycle.setOnMouseClicked(e -> {
             PaymentScreenHandler paymentScreenHandler = null;
@@ -60,6 +71,12 @@ public class RentBicycleScreenHandler extends BaseScreenHandler {
                 ioException.printStackTrace();
             }
         });
+    }
+
+    @FXML
+    void back(MouseEvent event) {
+        getPreviousScreen().show();
+
     }
 
 }

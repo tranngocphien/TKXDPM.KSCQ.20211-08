@@ -1,5 +1,6 @@
 package views.screen.home;
 
+import controller.RentBicycleController;
 import controller.SearchDockController;
 import entity.dock.Dock;
 import javafx.fxml.FXML;
@@ -66,6 +67,13 @@ public class HomeScreenHandler extends BaseScreenHandler{
         btnViewBorrowingBike.setOnMouseClicked(e-> {
             viewDetailBorrowingBike();
         });
+
+        if((new RentBicycleController()).isBorrowing()){
+            btnViewBorrowingBike.setDisable(false);
+        }
+        else {
+            btnViewBorrowingBike.setDisable(true);
+        }
     }
 
 
@@ -110,7 +118,7 @@ public class HomeScreenHandler extends BaseScreenHandler{
             ioException.printStackTrace();
         }
         borrowingBicycleScreenHandler.setScreenTitle("CHI TIẾT XE ĐANG THUÊ");
-        borrowingBicycleScreenHandler.setPreviousScreen(this.homeScreenHandler);
+        borrowingBicycleScreenHandler.setPreviousScreen(this);
         borrowingBicycleScreenHandler.show();
     }
 }

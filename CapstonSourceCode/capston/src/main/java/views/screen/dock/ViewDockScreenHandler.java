@@ -6,6 +6,7 @@ import entity.bicycle.Vehicle;
 import entity.dock.Dock;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -84,6 +85,7 @@ public class ViewDockScreenHandler extends BaseScreenHandler {
 
         for(Vehicle bicycle : dock.getListBicycle()){
             BicycleHandler bicycleHandler = new BicycleHandler(this.stage, Configs.VEHICLE_COMPONENT_PATH, bicycle);
+            bicycleHandler.setPreviousScreen(this);
             vbBicycle.getChildren().add(bicycleHandler.getContent());
         }
 
@@ -99,15 +101,29 @@ public class ViewDockScreenHandler extends BaseScreenHandler {
 
         btnRent.setOnMouseClicked(e -> {
             RentBicycleScreenHandler rentBicycleScreenHandler = null;
+            Vehicle vehicle = null;
             try {
-                rentBicycleScreenHandler = new RentBicycleScreenHandler(stage, Configs.RENT_BIKE_PATH, null);
-                rentBicycleScreenHandler.setScreenTitle("Bicycle");
-                rentBicycleScreenHandler.show();
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
+                vehicle = getBController().getVehicleInDockByCode(tfBicycleCode.getText(), dock.getId());
+                if(vehicle == null){
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("Không có xe này trong bãi xe");
+                    alert.showAndWait();
+                }
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+
             }
-
-
+            if(vehicle != null){
+                try {
+                    rentBicycleScreenHandler = new RentBicycleScreenHandler(stage, Configs.RENT_BIKE_PATH,vehicle );
+                    rentBicycleScreenHandler.setPreviousScreen(this);
+                    rentBicycleScreenHandler.setScreenTitle("Bicycle");
+                    rentBicycleScreenHandler.show();
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
+            }
         });
 
 
@@ -116,7 +132,6 @@ public class ViewDockScreenHandler extends BaseScreenHandler {
     @FXML
     public void back(ActionEvent event) {
         getPreviousScreen().show();
-
     }
 
 
