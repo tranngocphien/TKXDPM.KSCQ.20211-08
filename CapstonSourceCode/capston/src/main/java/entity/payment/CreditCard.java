@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Date;
 
-public class CreditCard {
+public class CreditCard implements PaymentCard{
     private String cardCode;
     private String owner;
     private int cvvCode;

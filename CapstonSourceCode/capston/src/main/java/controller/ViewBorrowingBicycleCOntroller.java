@@ -1,5 +1,9 @@
 package controller;
 
+import controller.calculateAmount.CalculateAmountBicycle;
+import controller.calculateAmount.CalculateAmountCoupleBike;
+import controller.calculateAmount.CalculateAmountElectricBike;
+import controller.calculateAmount.CalculateFactory;
 import entity.bicycle.*;
 
 import java.sql.SQLException;
@@ -8,7 +12,7 @@ public class ViewBorrowingBicycleController extends BaseController{
 
     public BorrowingBike viewDetailBorrowingByUserId(Long userId) {
         BorrowingBike borrowingBike = new BorrowingBike().viewDetailBorrowingBikeByUserId(userId);
-        Double totalMoney = calculateTotalAmount(System.currentTimeMillis()-borrowingBike.getBorrowedAt().getTime(), borrowingBike.getClassifyId());
+        Double totalMoney = new CalculateFactory().calculateFeeBorrowingBike(borrowingBike.getClassifyId(), System.currentTimeMillis()-borrowingBike.getBorrowedAt().getTime());
         borrowingBike.setTotalAmount(totalMoney);
         Double deposit = new Vehicle().getDeposit(borrowingBike.getClassifyId());
         borrowingBike.setDeposit(deposit);
@@ -24,14 +28,5 @@ public class ViewBorrowingBicycleController extends BaseController{
         }
         return null;
     }
-
-    public Double calculateTotalAmount(Long totalTime, Integer classifyId) {
-        long thirtyMinutes = 1000*60*30l;
-        long totalMoney = 0;
-        if (totalTime <= thirtyMinutes) totalMoney = 10000;
-        else totalMoney = (totalTime-thirtyMinutes)/thirtyMinutes * 3000 + 10000;
-        return classifyId == 1 ? totalMoney : totalMoney*1.5;
-    }
-
 
 }

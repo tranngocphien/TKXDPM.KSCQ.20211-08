@@ -1,6 +1,7 @@
 package controller;
 
 import common.exception.InternalServerErrorException;
+import controller.calculateAmount.CalculateFactory;
 import entity.bicycle.BorrowingBike;
 import entity.bicycle.Vehicle;
 import entity.dock.Dock;
@@ -39,7 +40,7 @@ public class ReturnBikeController extends BaseController{
 
             new DockBike().addBikeOnDock(bikeId, borrowingBike.getClassifyId(), dockId); // thêm xe vào bãi
             Long totalTime = System.currentTimeMillis() - borrowingBike.getBorrowedAt().getTime();
-            Double totalAmount = calculateTotalAmount(totalTime, borrowingBike.getClassifyId()); // tính toán tổng tiền
+            Double totalAmount = new CalculateFactory().calculateFeeBorrowingBike(borrowingBike.getClassifyId(), System.currentTimeMillis()-borrowingBike.getBorrowedAt().getTime());// tính toán tổng tiền
             new Invoice().createInvoice(totalAmount, totalTime, bikeId, dockId, new Timestamp(System.currentTimeMillis()), borrowingBike.getUserId()); // tạo hóa đơn
             borrowingBike.removeBikeBorrowing(bikeId);//xóa xe đang mượn
             CreditCard creditCard = new CreditCard().getCreditCardByCardCode("kscq1_group8_2021");
@@ -59,13 +60,5 @@ public class ReturnBikeController extends BaseController{
         }
 
         return "Trả xe thành công";
-    }
-
-    public Double calculateTotalAmount(Long totalTime, Integer classifyId) {
-        long thirtyMinutes = 1000*60*30l;
-        long totalMoney = 0;
-        if (totalTime <= thirtyMinutes) totalMoney = 10000;
-        else totalMoney = (totalTime-thirtyMinutes)/thirtyMinutes * 3000 + 10000;
-        return classifyId == 1 ? totalMoney : totalMoney*1.5;
     }
 }

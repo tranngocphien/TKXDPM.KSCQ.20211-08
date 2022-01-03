@@ -10,7 +10,7 @@ import entity.payment.PaymentTransaction;
  *
  * @author PhienTran
  */
-public interface InterbankInterface {
+public interface InterbankInterface extends BankInterface {
 
     /**
      * Thanh toán tiền đặt cọc và trả về thông tin giao dịch

@@ -8,7 +8,7 @@ import java.sql.Timestamp;
 
 public class PaymentTransaction {
     private String errorCode;
-    private CreditCard card;
+    private PaymentCard card;
     private String transactionId;
     private String transactionContent;
     private int amount;
@@ -16,7 +16,7 @@ public class PaymentTransaction {
     private String content;
 
 
-    public PaymentTransaction(String errorCode, CreditCard card, String transactionId, String transactionContent,
+    public PaymentTransaction(String errorCode, PaymentCard card, String transactionId, String transactionContent,
                               int amount, String createdAt, String content) {
         super();
         this.errorCode = errorCode;
@@ -33,7 +33,7 @@ public class PaymentTransaction {
     }
 
     public void save(PaymentTransaction paymentTransaction, Long invoiceId) {
-        String sql = "INSERT INTO `lichitec_capston`.`payment_transaction` (`transaction_id`, `content`, `method`, `created_at`, `invoice_id`, `cardCode`) VALUES ('"+paymentTransaction.transactionId+"', '"+paymentTransaction.content+"' ,'credit card', '"+paymentTransaction.createdAt+"', '"+invoiceId+"', '"+paymentTransaction.card.getCardCode()+"')";
+        String sql = "INSERT INTO `lichitec_capston`.`payment_transaction` (`transaction_id`, `content`, `method`, `created_at`, `invoice_id`, `cardCode`) VALUES ('"+paymentTransaction.transactionId+"', '"+paymentTransaction.content+"' ,'credit card', '"+paymentTransaction.createdAt+"', '"+invoiceId+"', '"+ ((CreditCard) paymentTransaction.card).getCardCode()+"')";
         try {
             Statement stm = CAPSTONDB.getConnection().createStatement();
             stm.executeUpdate(sql);
