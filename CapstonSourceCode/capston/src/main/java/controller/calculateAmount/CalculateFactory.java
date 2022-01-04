@@ -1,15 +1,15 @@
 package controller.calculateAmount;
 
 public class CalculateFactory {
-    public Double calculateFeeBorrowingBike(Integer classifyId, Long totalTime) {
+    public CalculateAmount getCalculateFeeBorrowingBike(Integer classifyId) {
         switch (classifyId) {
             case 1:
-                return new CalculateAmountBicycle().calculateTotalFeeBorrowingBike(totalTime);
+                return new CalculateAmountBicycle();
             case 2:
-                return new CalculateAmountCoupleBike().calculateTotalFeeBorrowingBike(totalTime);
+                return new CalculateAmountCoupleBike();
             case 3:
-                return new CalculateAmountElectricBike().calculateTotalFeeBorrowingBike(totalTime);
+                return new CalculateAmountElectricBike();
         }
-        return 0d;
+        return null;
     }
 }
