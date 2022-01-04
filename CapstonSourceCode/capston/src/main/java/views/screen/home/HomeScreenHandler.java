@@ -102,6 +102,7 @@ public class HomeScreenHandler extends BaseScreenHandler{
             for (Dock dock : docks) {
                 DockHandler dockHandler = new DockHandler(this.stage,Configs.DOCK_COMPONENT_PATH, dock);
                 dockHandler.setPreviousScreen(this);
+                dockHandler.setHomeScreenHandler(this);
                 items.add(dockHandler);
             }
             addDockComponent(items);

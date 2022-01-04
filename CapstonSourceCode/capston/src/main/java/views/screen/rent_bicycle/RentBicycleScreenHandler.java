@@ -65,6 +65,7 @@ public class RentBicycleScreenHandler extends BaseScreenHandler {
             PaymentScreenHandler paymentScreenHandler = null;
             try {
                 paymentScreenHandler = new PaymentScreenHandler(stage, Configs.PAYMENT_PATH, vehicle);
+                paymentScreenHandler.setPreviousScreen(this);
                 paymentScreenHandler.setScreenTitle("Bicycle");
                 paymentScreenHandler.show();
             } catch (IOException ioException) {
