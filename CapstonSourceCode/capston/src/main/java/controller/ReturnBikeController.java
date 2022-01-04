@@ -1,6 +1,7 @@
 package controller;
 
 import common.exception.InternalServerErrorException;
+import controller.calculateAmount.CalculateAmount;
 import controller.calculateAmount.CalculateFactory;
 import entity.bicycle.BorrowingBike;
 import entity.bicycle.Vehicle;
@@ -40,7 +41,8 @@ public class ReturnBikeController extends BaseController{
 
             new DockBike().addBikeOnDock(bikeId, borrowingBike.getClassifyId(), dockId); // thêm xe vào bãi
             Long totalTime = System.currentTimeMillis() - borrowingBike.getBorrowedAt().getTime();
-            Double totalAmount = new CalculateFactory().calculateFeeBorrowingBike(borrowingBike.getClassifyId(), System.currentTimeMillis()-borrowingBike.getBorrowedAt().getTime());// tính toán tổng tiền
+            CalculateAmount calculateAmount = new CalculateFactory().getCalculateFeeBorrowingBike(borrowingBike.getClassifyId());
+            Double totalAmount = calculateAmount.calculateTotalFeeBorrowingBike(System.currentTimeMillis()-borrowingBike.getBorrowedAt().getTime());// tính toán tổng tiền
             new Invoice().createInvoice(totalAmount, totalTime, bikeId, dockId, new Timestamp(System.currentTimeMillis()), borrowingBike.getUserId()); // tạo hóa đơn
             borrowingBike.removeBikeBorrowing(bikeId);//xóa xe đang mượn
             CreditCard creditCard = new CreditCard().getCreditCardByCardCode("kscq1_group8_2021");
