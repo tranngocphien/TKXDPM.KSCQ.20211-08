@@ -16,7 +16,7 @@
    <children>
       <AnchorPane prefHeight="127.0" prefWidth="1366.0" style="-fx-border-color: #e0e0e0; -fx-background-color: #ffffff;" AnchorPane.bottomAnchor="641.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ImageView fitHeight="111.0" fitWidth="200.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0">
+            <ImageView fitHeight="111.0" fitWidth="200.0" onMouseClicked="#back" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0">
                <image>
                   <Image url="@/images/capstonelogo.png" />
                </image>

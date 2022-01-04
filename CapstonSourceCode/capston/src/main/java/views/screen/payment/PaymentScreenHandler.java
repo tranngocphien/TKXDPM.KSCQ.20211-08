@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import utils.Configs;
 import views.screen.BaseScreenHandler;
@@ -98,5 +99,11 @@ public class PaymentScreenHandler extends BaseScreenHandler {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    void back(MouseEvent event) {
+        getPreviousScreen().show();
+
     }
 }

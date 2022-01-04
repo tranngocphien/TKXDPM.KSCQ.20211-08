@@ -25,11 +25,6 @@
                   <Font name="System Bold" size="36.0" />
                </font>
             </Label>
-            <Button layoutX="1262.0" layoutY="51.0" mnemonicParsing="false" text="Trả xe">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Button>
          </children>
       </AnchorPane>
       <AnchorPane layoutX="-9.0" layoutY="127.0" prefHeight="641.0" prefWidth="433.0" style="-fx-border-color: #e0e0e0;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-9.0" AnchorPane.rightAnchor="809.0" AnchorPane.topAnchor="127.0">
